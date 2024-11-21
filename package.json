@@ -7,5 +7,10 @@
     "chart.js": "^4.4.6",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15"
-  }
+  },
+  "scripts": {
+    "build:css": "tailwindcss -o theme/static_src/src/styles.css --minify",
+    "watch:css": "tailwindcss -o theme/static_src/src/styles.css --watch"
+}
+
 }
