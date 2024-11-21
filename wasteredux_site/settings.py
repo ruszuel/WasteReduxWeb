@@ -17,10 +17,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost', 
-    '127.0.0.1', 
-    '.vercel.app',
-    ]  # Update with actual hostnames
+    '*'
+]  # Update with actual hostnames
 
 
 
