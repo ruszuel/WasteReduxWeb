@@ -1,0 +1,777 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+
+  <body>
+    <div class="flex h-screen overflow-hidden">
+      <aside
+        class="flex flex-col w-20 custom_lg:w-1/6 h-screen fixed top-0 left-0 overflow-y-auto bg-neutral-100"
+      >
+        <div
+          class="flex flex-col grow px-3 py-6 custom_lg:px-4 mx-auto w-full text-md bg-white border-r border-solid border-zinc-300"
+        >
+          <header
+            class="flex gap-3 text-2xl font-bold text-neutral-500 items-center custom_lg:justify-center justify-center"
+          >
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8ee72c842d258565731666e33bc76535290acfc1ed8770a8712ed85d7bd7022?apiKey=493880da1219496b8645af306c62489e&"
+              class="shrink-0 mt-1 custom_lg:mt-auto w-6 aspect-[0.74]"
+              alt=""
+            />
+            <h1 class="flex gap-1 mt-1.5 custom_lg:flex hidden">
+              <span class="text-redux-green">Waste</span>
+              <span class="text-redux-lightgreen">Redux</span>
+            </h1>
+          </header>
+
+          <nav class="mt-16 custom_lg:mt-16">
+            <div class="flex flex-col gap-3">
+              <a
+                href="{% url 'dashboard' %}"
+                class="flex items-center justify-start px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="2 0 20 20"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M6.25 10.5C6.25 10.0858 5.91421 9.75 5.5 9.75C5.08579 9.75 4.75 10.0858 4.75 10.5H6.25ZM11.5 19.75C11.9142 19.75 12.25 19.4142 12.25 19C12.25 18.5858 11.9142 18.25 11.5 18.25V19.75ZM4.75 10.5C4.75 10.9142 5.08579 11.25 5.5 11.25C5.91421 11.25 6.25 10.9142 6.25 10.5H4.75ZM11.5 5.75C11.9142 5.75 12.25 5.41421 12.25 5C12.25 4.58579 11.9142 4.25 11.5 4.25V5.75ZM5.5 9.75C5.08579 9.75 4.75 10.0858 4.75 10.5C4.75 10.9142 5.08579 11.25 5.5 11.25V9.75ZM11.5 11.25C11.9142 11.25 12.25 10.9142 12.25 10.5C12.25 10.0858 11.9142 9.75 11.5 9.75V11.25ZM10.75 10.5C10.75 10.9142 11.0858 11.25 11.5 11.25C11.9142 11.25 12.25 10.9142 12.25 10.5H10.75ZM12.25 5C12.25 4.58579 11.9142 4.25 11.5 4.25C11.0858 4.25 10.75 4.58579 10.75 5H12.25ZM12.25 10.5C12.25 10.0858 11.9142 9.75 11.5 9.75C11.0858 9.75 10.75 10.0858 10.75 10.5H12.25ZM10.75 14C10.75 14.4142 11.0858 14.75 11.5 14.75C11.9142 14.75 12.25 14.4142 12.25 14H10.75ZM11.5 18.25C11.0858 18.25 10.75 18.5858 10.75 19C10.75 19.4142 11.0858 19.75 11.5 19.75V18.25ZM20.25 14C20.25 13.5858 19.9142 13.25 19.5 13.25C19.0858 13.25 18.75 13.5858 18.75 14H20.25ZM10.75 19C10.75 19.4142 11.0858 19.75 11.5 19.75C11.9142 19.75 12.25 19.4142 12.25 19H10.75ZM12.25 14C12.25 13.5858 11.9142 13.25 11.5 13.25C11.0858 13.25 10.75 13.5858 10.75 14H12.25ZM11.5 4.25C11.0858 4.25 10.75 4.58579 10.75 5C10.75 5.41421 11.0858 5.75 11.5 5.75V4.25ZM18.75 14C18.75 14.4142 19.0858 14.75 19.5 14.75C19.9142 14.75 20.25 14.4142 20.25 14H18.75ZM19.5 14.75C19.9142 14.75 20.25 14.4142 20.25 14C20.25 13.5858 19.9142 13.25 19.5 13.25V14.75ZM11.5 13.25C11.0858 13.25 10.75 13.5858 10.75 14C10.75 14.4142 11.0858 14.75 11.5 14.75V13.25ZM4.75 10.5L4.75 15H6.25L6.25 10.5H4.75ZM4.75 15C4.75 17.6234 6.87665 19.75 9.5 19.75V18.25C7.70507 18.25 6.25 16.7949 6.25 15H4.75ZM9.5 19.75H11.5V18.25H9.5V19.75ZM6.25 10.5V9H4.75V10.5H6.25ZM6.25 9C6.25 7.20507 7.70507 5.75 9.5 5.75V4.25C6.87665 4.25 4.75 6.37665 4.75 9H6.25ZM9.5 5.75H11.5V4.25H9.5V5.75ZM5.5 11.25H11.5V9.75H5.5V11.25ZM12.25 10.5V5H10.75V10.5H12.25ZM10.75 10.5V14H12.25V10.5H10.75ZM11.5 19.75H15.5V18.25H11.5V19.75ZM15.5 19.75C18.1234 19.75 20.25 17.6234 20.25 15H18.75C18.75 16.7949 17.2949 18.25 15.5 18.25V19.75ZM20.25 15V14H18.75V15H20.25ZM12.25 19V14H10.75V19H12.25ZM11.5 5.75H15.5L15.5 4.25H11.5V5.75ZM15.5 5.75C17.2949 5.75 18.75 7.20507 18.75 9L20.25 9C20.25 6.37665 18.1234 4.25 15.5 4.25L15.5 5.75ZM18.75 9V14H20.25V9L18.75 9ZM19.5 13.25H11.5V14.75H19.5V13.25Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                >
+                  Dashboard
+                </span>
+              </a>
+
+              <a
+                href="{% url 'profiles' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M11.9999 17C15.6623 17 18.8649 18.5751 20.607 20.9247L18.765 21.796C17.3473 20.1157 14.8473 19 11.9999 19C9.15248 19 6.65252 20.1157 5.23479 21.796L3.39355 20.9238C5.13576 18.5747 8.33796 17 11.9999 17ZM11.9999 2C14.7613 2 16.9999 4.23858 16.9999 7V10C16.9999 12.6888 14.8776 14.8818 12.2168 14.9954L11.9999 15C9.23847 15 6.9999 12.7614 6.9999 10V7C6.9999 4.31125 9.1222 2.11818 11.783 2.00462L11.9999 2ZM11.9999 4C10.4022 4 9.09623 5.24892 9.00499 6.82373L8.9999 7V10C8.9999 11.6569 10.343 13 11.9999 13C13.5976 13 14.9036 11.7511 14.9948 10.1763L14.9999 10V7C14.9999 5.34315 13.6567 4 11.9999 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Profile</span
+                >
+              </a>
+
+              <a
+                href="{% url 'users' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M12 11C14.7614 11 17 13.2386 17 16V22H15V16C15 14.4023 13.7511 13.0963 12.1763 13.0051L12 13C10.4023 13 9.09634 14.2489 9.00509 15.8237L9 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5.5 14C5.77885 14 6.05009 14.0326 6.3101 14.0942C6.14202 14.594 6.03873 15.122 6.00896 15.6693L6 16L6.0007 16.0856C5.88757 16.0456 5.76821 16.0187 5.64446 16.0069L5.5 16C4.7203 16 4.07955 16.5949 4.00687 17.3555L4 17.5V22H2V17.5C2 15.567 3.567 14 5.5 14ZM18.5 14C20.433 14 22 15.567 22 17.5V22H20V17.5C20 16.7203 19.4051 16.0796 18.6445 16.0069L18.5 16C18.3248 16 18.1566 16.03 18.0003 16.0852L18 16C18 15.3343 17.8916 14.694 17.6915 14.0956C17.9499 14.0326 18.2211 14 18.5 14ZM5.5 8C6.88071 8 8 9.11929 8 10.5C8 11.8807 6.88071 13 5.5 13C4.11929 13 3 11.8807 3 10.5C3 9.11929 4.11929 8 5.5 8ZM18.5 8C19.8807 8 21 9.11929 21 10.5C21 11.8807 19.8807 13 18.5 13C17.1193 13 16 11.8807 16 10.5C16 9.11929 17.1193 8 18.5 8ZM5.5 10C5.22386 10 5 10.2239 5 10.5C5 10.7761 5.22386 11 5.5 11C5.77614 11 6 10.7761 6 10.5C6 10.2239 5.77614 10 5.5 10ZM18.5 10C18.2239 10 18 10.2239 18 10.5C18 10.7761 18.2239 11 18.5 11C18.7761 11 19 10.7761 19 10.5C19 10.2239 18.7761 10 18.5 10ZM12 2C14.2091 2 16 3.79086 16 6C16 8.20914 14.2091 10 12 10C9.79086 10 8 8.20914 8 6C8 3.79086 9.79086 2 12 2ZM12 4C10.8954 4 10 4.89543 10 6C10 7.10457 10.8954 8 12 8C13.1046 8 14 7.10457 14 6C14 4.89543 13.1046 4 12 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Users</span
+                >
+              </a>
+
+              <a
+                href="{% url 'filtering' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-white whitespace-nowrap rounded-xl bg-redux-lightgreen max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M7 3V6H3V8H7V11H10V3H7ZM12 8H21V6H12V8ZM17 13V16H21V18H17V21H14V13H17ZM12 18H3V16H12V18Z"
+                  ></path>
+                </svg>
+                <span class="ml-5 max-custom_lg:hidden">Waste Filtering</span>
+              </a>
+
+              <a
+                href="{% url 'filteredimages' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM5 13.9289V19H8.1005L11.0858 16.0147L7 11.9289L5 13.9289ZM10.9289 19H19V16.9289L16 13.9289L10.9289 19ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Filtered Images</span
+                >
+              </a>
+            </div>
+          </nav>
+          <a
+            href="{% url 'logout' %}"
+            class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 mt-60 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+          >
+            <img
+              loading="lazy"
+              src="https://www.svgrepo.com/show/347125/logout-box.svg"
+              class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+              alt=""
+            />
+            <span
+              class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+            >
+              Log out
+            </span>
+          </a>
+        </div>
+      </aside>
+
+      <main
+        class="flex-1 ml-20 custom_lg:ml-[16.66%] h-screen overflow-y-auto p-5 bg-neutral-100 text-lg"
+      >
+        <section
+          class="flex sticky flex-col self-stretch my-auto mt-1.5 max-md:max-w-full"
+        >
+          <nav class="flex justify-between flex-wrap">
+            <h1 class="self-start gap-5 text-3xl font-bold text-redux-green">
+              Waste Filtering
+            </h1>
+          </nav>
+
+          <div
+            class="flex gap-5 items-start mt-16 w-full max-md:flex-wrap custom_xl_1:justify-start max-md:max-w-full"
+          >
+            <div class="flex w-full gap-5 max-md:flex-wrap">
+              <div class="relative inline-block w-[8rem] sm:w-40">
+                <div
+                  class="flex items-center justify-between px-4 py-3 bg-white border border-transparent rounded-xl shadow-md"
+                  onclick="toggleDropdown('dropdownMenu_category')"
+                >
+                  <span id="categoryLabel" class="text-stone-900 text-sm"
+                    >Category</span
+                  >
+                  <img
+                    loading="lazy"
+                    src="https://www.svgrepo.com/show/335062/dropdown.svg"
+                    class="w-5 h-5 hover:bg-gray-200"
+                    alt="Dropdown Icon"
+                  />
+                </div>
+
+                <div
+                  id="dropdownMenu_category"
+                  class="absolute left-0 w-full mt-1 bg-white border rounded-lg shadow-md hidden z-50"
+                >
+                  <ul class="py-1 text-sm">
+                    <li
+                      onclick="filterTable('category', '', 'categoryLabel')"
+                      class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                    >
+                      All
+                    </li>
+                    <li
+                      onclick="filterTable('category', 'Plastic', 'categoryLabel')"
+                      class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                    >
+                      Plastic
+                    </li>
+                    <li
+                      onclick="filterTable('category', 'Metal', 'categoryLabel')"
+                      class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                    >
+                      Metal
+                    </li>
+                    <li
+                      onclick="filterTable('category', 'Glass', 'categoryLabel')"
+                      class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                    >
+                      Glass
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="ml-auto flex gap-3">
+                <button
+                  type="button"
+                  class="flex items-center gap-2 py-3 px-5 rounded-xl shadow-md bg-red-400 hover:bg-red-500"
+                  onclick="showModal('confirmFlagModal')"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-5 h-5 text-white"
+                  >
+                    <path
+                      d="M16.5859 18L21.1925 22.6066L22.6068 21.1924L2.80777 1.39343L1.39355 2.80765L3.00008 4.41417V22H5.00008V16H12.0001L12.7237 17.4472C12.8931 17.786 13.2393 18 13.6181 18H16.5859ZM14.5859 16H14.2361L13.8864 15.3005L14.5859 16ZM12.5859 14H5.00008V6.41417L12.5859 14ZM21.0001 5.99995V16.7576L19.0001 14.7576V6.99995H12.764L11.764 4.99995H9.24241L7.24241 2.99995H12.382C12.7608 2.99995 13.1071 3.21396 13.2765 3.55274L14.0001 4.99995H20.0001C20.5524 4.99995 21.0001 5.44767 21.0001 5.99995Z"
+                    ></path>
+                  </svg>
+                  <span class="text-sm font-semibold text-white">Flag</span>
+                </button>
+
+                <button
+                  type="button"
+                  class="flex items-center gap-2 px-5 py-3 text-sm font-medium shadow-md text-white rounded-xl bg-redux-lightgreen hover:bg-redux-green"
+                  onclick="showModal('confirmAddModal')"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-5 h-5 text-white -ml-1"
+                  >
+                    <path
+                      d="M21 15V18H24V20H21V23H19V20H16V18H19V15H21ZM21.0082 3C21.556 3 22 3.44495 22 3.9934V13H20V5H4V18.999L14 9L17 12V14.829L14 11.8284L6.827 19H14V21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082ZM8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7Z"
+                    ></path>
+                  </svg>
+                  Filtered Images
+                </button>
+
+                <div
+                  id="confirmAddModal"
+                  class="modal hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg p-6 max-w-sm w-full shadow-lg text-center"
+                  >
+                    <h2 class="text-lg font-bold text-stone-800">
+                      Confirm Action
+                    </h2>
+                    <p class="text-base text-stone-800 mt-2">
+                      Are you sure you want to add the selected images to
+                      filtered images?
+                    </p>
+                    <div
+                      class="mt-4 flex justify-center gap-4 text-base font-bold"
+                    >
+                      <button
+                        onclick="closeModal('confirmAddModal')"
+                        class="px-4 py-2 bg-gray-300 text-stone-800 rounded-md hover:bg-gray-400 transition"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onclick="confirmAction('add')"
+                        class="px-8 py-2 bg-redux-lightgreen text-white rounded-md hover:bg-redux-green transition"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  id="confirmFlagModal"
+                  class="modal hidden fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50"
+                >
+                  <div
+                    class="bg-white rounded-lg p-6 max-w-sm w-full shadow-lg text-center"
+                  >
+                    <h2 class="text-lg font-bold text-gray-800">
+                      Confirm Action
+                    </h2>
+                    <p class="text-base text-stone-800 mt-2">
+                      Are you sure you want to flag the selected images as
+                      inappropriate?
+                    </p>
+                    <div
+                      class="mt-4 flex justify-center gap-4 text-base font-bold"
+                    >
+                      <button
+                        onclick="closeModal('confirmFlagModal')"
+                        class="px-4 py-2 bg-gray-300 text-stone-800 rounded-md hover:bg-gray-400 transition"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onclick="confirmAction('flag')"
+                        class="px-8 py-2 bg-red-400 text-white rounded-md hover:bg-red-500 transition"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <script>
+                  function toggleSelectAll(source) {
+                    const rows = document.querySelectorAll("tbody tr");
+                    rows.forEach((row) => {
+                      if (!row.classList.contains("filtered-out")) {
+                        const checkbox = row.querySelector(".select-item");
+                        if (checkbox) {
+                          checkbox.checked = source.checked;
+                        }
+                      }
+                    });
+                  }
+
+                  function getSelectedImageIds() {
+                    const selectedCheckboxes = document.querySelectorAll(
+                      ".select-item:checked"
+                    );
+                    return Array.from(selectedCheckboxes).map(
+                      (checkbox) => checkbox.value
+                    );
+                  }
+
+                  function showModal(modalId) {
+                    const imageIds = getSelectedImageIds();
+                    if (imageIds.length === 0) {
+                      alert("Please select images first.");
+                    } else {
+                      document
+                        .getElementById(modalId)
+                        .classList.remove("hidden");
+                    }
+                  }
+
+                  function closeModal(modalId) {
+                    document.getElementById(modalId).classList.add("hidden");
+                  }
+
+                  function resetSelectAllCheckbox() {
+                    document
+                      .querySelectorAll("[id^='selectAll']")
+                      .forEach((checkbox) => {
+                        checkbox.checked = false;
+                      });
+                  }
+
+                  function confirmAction(actionType) {
+                    const imageIds = getSelectedImageIds();
+                    const url =
+                      actionType === "add"
+                        ? "{% url 'update_recognized_status' %}"
+                        : "{% url 'update_flagged_status' %}";
+
+                    const data = { image_ids: imageIds };
+
+                    fetch(url, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": "{{ csrf_token }}",
+                      },
+                      body: JSON.stringify(data),
+                    })
+                      .then((response) => response.json())
+                      .then((data) => {
+                        if (data.status === "success") {
+                          alert(
+                            `Selected images have been ${
+                              actionType === "add"
+                                ? "added to filtered images"
+                                : "flagged as inappropriate"
+                            }.`
+                          );
+
+                          imageIds.forEach((id) => {
+                            const row = document.querySelector(
+                              `tr[data-id="${id}"]`
+                            );
+                            if (row) row.remove();
+                          });
+
+                          resetSelectAllCheckbox();
+                        }
+                      });
+
+                    closeModal("confirmAddModal");
+                    closeModal("confirmFlagModal");
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative mt-5 w-full overflow-auto h-[calc(100vh-220px)]">
+            <table
+              class="w-full text-md font-normal text-neutral-600 bg-white border-t border-zinc-300"
+            >
+              <thead class="sticky -top-1 bg-white z-40">
+                <tr class="font-semibold">
+                  <th class="px-4 py-4 text-left w-[120px]">User Email</th>
+                  <th class="px-4 py-4 text-left w-[120px]">Category</th>
+                  <th class="px-4 py-4 text-left w-[200px]">Image</th>
+                  <th class="px-5 py-4 text-left w-[155px]">Date Registered</th>
+                  <th class="px-4 py-4 text-center w-[40px]">
+                    <input
+                      type="checkbox"
+                      id="selectAll"
+                      onclick="toggleSelectAll(this)"
+                    />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for activity in unrecognized_images %}
+                <tr
+                  class="border-t border-b border-solid border-zinc-300"
+                  data-id="{{ activity.id }}"
+                >
+                  <td class="px-4 py-5 font-medium text-left">
+                    <a
+                      href="{% url 'user_activity_list' activity.email_address.email_address %}"
+                      class="text-blue-600 hover:text-blue-800"
+                    >
+                      {{ activity.email_address.email_address }}
+                    </a>
+                  </td>
+                  <td class="px-4 py-5 font-semibold">
+                    {{ activity.category }}
+                  </td>
+                  <td class="px-4 py-5 w-[200px] max-w-[200px]">
+                    <img
+                      src="{{ activity.image_url }}"
+                      class="object-contain w-[90px] h-[145px]"
+                      alt="Unrecognized Image"
+                    />
+                  </td>
+                  <td class="px-5 py-5">{{ activity.date_registered }}</td>
+                  <td class="px-4 py-5 text-center">
+                    <input
+                      type="checkbox"
+                      class="select-item"
+                      value="{{ activity.id }}"
+                    />
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center py-5">
+                    No unrecognized images found.
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <div
+              class="flex justify-between items-center mt-4 text-sm text-stone-500"
+            >
+              <div class="flex items-center">
+                <span>Show</span>
+
+                <div class="relative ml-4">
+                  <div
+                    class="select-selected border px-3 py-1 rounded cursor-pointer bg-white flex items-center justify-between"
+                  >
+                    <span class="mr-6"></span>
+                    <span class="dropdown-icon text-[9px]">▼</span>
+                  </div>
+
+                  <div
+                    class="select-items absolute border bg-white w-full hidden z-10"
+                  >
+                    <div
+                      data-value="5"
+                      class="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    >
+                      5
+                    </div>
+                    <div
+                      data-value="10"
+                      class="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    >
+                      10
+                    </div>
+                    <div
+                      data-value="20"
+                      class="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    >
+                      20
+                    </div>
+                    <div
+                      data-value="50"
+                      class="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                    >
+                      50
+                    </div>
+                  </div>
+                </div>
+
+                <span class="ml-4">entries</span>
+              </div>
+
+              <div id="paginationControls" class="flex gap-2">
+                <button
+                  onclick="previousPage()"
+                  class="px-2 py-1 border rounded hover:bg-gray-200"
+                >
+                  Previous
+                </button>
+                <div id="pageNumbers" class="flex gap-2"></div>
+                <button
+                  onclick="nextPage()"
+                  class="px-2 py-1 border rounded hover:bg-gray-200"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            let currentPage = 1;
+            let rowsPerPage = 10;
+            let totalRows = 0;
+
+            function displayPage(page) {
+              const rows = document.querySelectorAll(
+                "tbody tr:not(.filtered-out)"
+              );
+              totalRows = rows.length;
+              const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+              if (page < 1) page = 1;
+              if (page > totalPages) page = totalPages;
+
+              const start = (page - 1) * rowsPerPage;
+              const end = start + rowsPerPage;
+
+              rows.forEach((row, index) => {
+                row.style.display = index >= start && index < end ? "" : "none";
+              });
+
+              updatePaginationControls(totalPages, page);
+              currentPage = page;
+            }
+
+            function updatePaginationControls(totalPages, currentPage) {
+              const pageNumbersContainer =
+                document.getElementById("pageNumbers");
+              pageNumbersContainer.innerHTML = "";
+
+              for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement("button");
+                pageButton.textContent = i;
+                pageButton.classList.add("px-2", "py-1", "border", "rounded");
+                if (i === currentPage) {
+                  pageButton.classList.add("bg-gray-200", "font-bold");
+                }
+                pageButton.addEventListener("click", () => displayPage(i));
+                pageNumbersContainer.appendChild(pageButton);
+              }
+            }
+
+            function previousPage() {
+              if (currentPage > 1) {
+                displayPage(currentPage - 1);
+              }
+            }
+
+            function nextPage() {
+              const totalPages = Math.ceil(totalRows / rowsPerPage);
+              if (currentPage < totalPages) {
+                displayPage(currentPage + 1);
+              }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+              const selected = document.querySelector(".select-selected");
+              const items = document.querySelector(".select-items");
+              const dropdownIcon = document.querySelector(".dropdown-icon");
+              const options = items.querySelectorAll("div[data-value]");
+
+              const storedRowsPerPage = localStorage.getItem("rowsPerPage");
+              rowsPerPage = storedRowsPerPage
+                ? parseInt(storedRowsPerPage, 10)
+                : 10;
+              selected.querySelector("span").textContent = rowsPerPage;
+
+              selected.addEventListener("click", function () {
+                items.classList.toggle("hidden");
+
+                const rect = selected.getBoundingClientRect();
+                const spaceBelow = window.innerHeight - rect.bottom;
+                const spaceAbove = rect.top;
+
+                if (
+                  spaceBelow < items.offsetHeight &&
+                  spaceAbove > items.offsetHeight
+                ) {
+                  items.style.top = "auto";
+                  items.style.bottom = "100%";
+                } else {
+                  items.style.top = "100%";
+                  items.style.bottom = "auto";
+                }
+
+                dropdownIcon.textContent = items.classList.contains("hidden")
+                  ? "▼"
+                  : "▲";
+              });
+
+              options.forEach((option) => {
+                option.addEventListener("click", function () {
+                  rowsPerPage = parseInt(this.dataset.value, 10);
+                  localStorage.setItem("rowsPerPage", rowsPerPage);
+                  selected.querySelector("span").textContent = rowsPerPage;
+                  displayPage(1);
+                  items.classList.add("hidden");
+                  dropdownIcon.textContent = "▼";
+                });
+              });
+
+              applyFilters();
+              displayPage(1);
+            });
+          </script>
+
+          <script>
+            function resetIndividualCheckboxes() {
+              document.querySelectorAll(".select-item").forEach((checkbox) => {
+                checkbox.checked = false;
+              });
+            }
+
+            function resetSelectAllCheckbox() {
+              document
+                .querySelectorAll("[id^='selectAll']")
+                .forEach((checkbox) => {
+                  checkbox.checked = false;
+                });
+            }
+
+            let selectedCategory = "";
+            let selectedAction = "";
+
+            function toggleDropdown(dropdownId) {
+              const dropdownMenu = document.getElementById(dropdownId);
+              dropdownMenu.classList.toggle("hidden");
+
+              resetSelectAllCheckbox();
+            }
+
+            function filterTable(type, value, labelId) {
+              const label = document.getElementById(labelId);
+              label.textContent = value
+                ? value
+                : type.charAt(0).toUpperCase() + type.slice(1);
+
+              if (type === "category") {
+                selectedCategory = value;
+              } else if (type === "action") {
+                selectedAction = value;
+              }
+
+              document
+                .getElementById("dropdownMenu_" + type)
+                .classList.add("hidden");
+
+              const rows = document.querySelectorAll("tbody tr");
+
+              rows.forEach((row) => {
+                row.style.display = "";
+              });
+
+              rows.forEach((row) => {
+                const categoryCell = row.cells[1].innerText;
+                const actionCell = row.cells[3].innerText;
+
+                const categoryMatch = selectedCategory
+                  ? categoryCell === selectedCategory
+                  : true;
+                const actionMatch = selectedAction
+                  ? actionCell === selectedAction
+                  : true;
+
+                if (categoryMatch && actionMatch) {
+                  row.style.display = "";
+                } else {
+                  row.style.display = "none";
+                }
+              });
+
+              applyFilters();
+              displayPage(1);
+
+              resetSelectAllCheckbox();
+              resetIndividualCheckboxes();
+            }
+
+            function applyFilters() {
+              const rows = document.querySelectorAll("tbody tr");
+              let visibleRowsCount = 0;
+
+              rows.forEach((row) => {
+                const categoryCell = row.cells[1].innerText;
+                const categoryMatch = selectedCategory
+                  ? categoryCell === selectedCategory
+                  : true;
+
+                if (categoryMatch) {
+                  row.classList.remove("filtered-out");
+                  visibleRowsCount++;
+                } else {
+                  row.classList.add("filtered-out");
+                }
+              });
+
+              totalRows = visibleRowsCount;
+              displayPage(1);
+
+              resetSelectAllCheckbox();
+              resetIndividualCheckboxes();
+            }
+
+            function resetFilters() {
+              selectedCategory = "";
+              document.getElementById("categoryLabel").textContent = "Category";
+
+              document.querySelectorAll("tbody tr").forEach((row) => {
+                row.classList.remove("filtered-out");
+              });
+
+              displayPage(1);
+            }
+
+            document.addEventListener("click", function (event) {
+              const dropdownButton = document.querySelector(
+                ".relative.inline-block"
+              );
+              const dropdownMenu = document.getElementById(
+                "dropdownMenu_category"
+              );
+
+              if (dropdownButton.contains(event.target)) {
+                return;
+              }
+            });
+          </script>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

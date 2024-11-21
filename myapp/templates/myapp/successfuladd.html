@@ -1,0 +1,29 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>Successfully Added to Database | WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+  <body>
+    <div
+      class="flex flex-wrap items-center justify-center gap-14 h-screen bg-white text-4xl font-medium text-redux-lightgreen p-5 max-md:px-5 max-md:py-24"
+    >
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4bc184063b4c0812bd4bf68a26aa336176f725bcdb0a432020e235534206bd5?placeholderIfAbsent=true&apiKey=493880da1219496b8645af306c62489e"
+        class="object-contain aspect-[1.42] w-16 max-md:w-12"
+        alt="Success icon"
+      />
+      <h2 class="text-center mt-4 max-w-full max-md:max-w-full">
+        You have successfully added the waste material to the database!
+      </h2>
+    </div>
+  </body>
+</html>

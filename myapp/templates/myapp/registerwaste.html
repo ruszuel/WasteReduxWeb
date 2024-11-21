@@ -1,0 +1,257 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+  <body>
+    <div class="flex h-screen overflow-hidden">
+      <aside
+        class="flex flex-col w-20 custom_lg:w-1/6 h-screen fixed top-0 left-0 overflow-y-auto bg-neutral-100"
+      >
+        <div
+          class="flex flex-col grow px-3 py-6 custom_lg:px-4 mx-auto w-full text-md bg-white border-r border-solid border-zinc-300"
+        >
+          <header
+            class="flex gap-3 text-2xl font-bold text-neutral-500 items-center custom_lg:justify-center justify-center"
+          >
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8ee72c842d258565731666e33bc76535290acfc1ed8770a8712ed85d7bd7022?apiKey=493880da1219496b8645af306c62489e&"
+              class="shrink-0 mt-1 custom_lg:mt-auto w-6 aspect-[0.74]"
+              alt=""
+            />
+            <h1 class="flex gap-1 mt-1.5 custom_lg:flex hidden">
+              <span class="text-redux-green">Waste</span>
+              <span class="text-redux-lightgreen">Redux</span>
+            </h1>
+          </header>
+
+          <nav class="mt-16 custom_lg:mt-16">
+            <div class="flex flex-col gap-3">
+              <a
+                href="{% url 'dashboard' %}"
+                class="flex items-center justify-start px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                >
+                  Home
+                </span>
+              </a>
+
+              <a
+                href="{% url 'profiles' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M11.9999 17C15.6623 17 18.8649 18.5751 20.607 20.9247L18.765 21.796C17.3473 20.1157 14.8473 19 11.9999 19C9.15248 19 6.65252 20.1157 5.23479 21.796L3.39355 20.9238C5.13576 18.5747 8.33796 17 11.9999 17ZM11.9999 2C14.7613 2 16.9999 4.23858 16.9999 7V10C16.9999 12.6888 14.8776 14.8818 12.2168 14.9954L11.9999 15C9.23847 15 6.9999 12.7614 6.9999 10V7C6.9999 4.31125 9.1222 2.11818 11.783 2.00462L11.9999 2ZM11.9999 4C10.4022 4 9.09623 5.24892 9.00499 6.82373L8.9999 7V10C8.9999 11.6569 10.343 13 11.9999 13C13.5976 13 14.9036 11.7511 14.9948 10.1763L14.9999 10V7C14.9999 5.34315 13.6567 4 11.9999 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Profile</span
+                >
+              </a>
+
+              <a
+                href="{% url 'users' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M12 11C14.7614 11 17 13.2386 17 16V22H15V16C15 14.4023 13.7511 13.0963 12.1763 13.0051L12 13C10.4023 13 9.09634 14.2489 9.00509 15.8237L9 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5.5 14C5.77885 14 6.05009 14.0326 6.3101 14.0942C6.14202 14.594 6.03873 15.122 6.00896 15.6693L6 16L6.0007 16.0856C5.88757 16.0456 5.76821 16.0187 5.64446 16.0069L5.5 16C4.7203 16 4.07955 16.5949 4.00687 17.3555L4 17.5V22H2V17.5C2 15.567 3.567 14 5.5 14ZM18.5 14C20.433 14 22 15.567 22 17.5V22H20V17.5C20 16.7203 19.4051 16.0796 18.6445 16.0069L18.5 16C18.3248 16 18.1566 16.03 18.0003 16.0852L18 16C18 15.3343 17.8916 14.694 17.6915 14.0956C17.9499 14.0326 18.2211 14 18.5 14ZM5.5 8C6.88071 8 8 9.11929 8 10.5C8 11.8807 6.88071 13 5.5 13C4.11929 13 3 11.8807 3 10.5C3 9.11929 4.11929 8 5.5 8ZM18.5 8C19.8807 8 21 9.11929 21 10.5C21 11.8807 19.8807 13 18.5 13C17.1193 13 16 11.8807 16 10.5C16 9.11929 17.1193 8 18.5 8ZM5.5 10C5.22386 10 5 10.2239 5 10.5C5 10.7761 5.22386 11 5.5 11C5.77614 11 6 10.7761 6 10.5C6 10.2239 5.77614 10 5.5 10ZM18.5 10C18.2239 10 18 10.2239 18 10.5C18 10.7761 18.2239 11 18.5 11C18.7761 11 19 10.7761 19 10.5C19 10.2239 18.7761 10 18.5 10ZM12 2C14.2091 2 16 3.79086 16 6C16 8.20914 14.2091 10 12 10C9.79086 10 8 8.20914 8 6C8 3.79086 9.79086 2 12 2ZM12 4C10.8954 4 10 4.89543 10 6C10 7.10457 10.8954 8 12 8C13.1046 8 14 7.10457 14 6C14 4.89543 13.1046 4 12 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Users</span
+                >
+              </a>
+
+              <a
+                href="{% url 'filtering' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M7 3V6H3V8H7V11H10V3H7ZM12 8H21V6H12V8ZM17 13V16H21V18H17V21H14V13H17ZM12 18H3V16H12V18Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Waste Filtering</span
+                >
+              </a>
+
+              <a
+                href="{% url 'registerwaste' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-white whitespace-nowrap rounded-xl bg-redux-lightgreen max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M15 4H5V20H19V8H15V4ZM3 2.9918C3 2.44405 3.44749 2 3.9985 2H16L20.9997 7L21 20.9925C21 21.5489 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5447 3 21.0082V2.9918ZM13 12V16H11V12H8L12 8L16 12H13Z"
+                  ></path>
+                </svg>
+                <span class="ml-5 max-custom_lg:hidden">Register Waste</span>
+              </a>
+            </div>
+          </nav>
+          <a
+            href="{% url 'index' %}"
+            class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 mt-60 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+          >
+            <img
+              loading="lazy"
+              src="https://www.svgrepo.com/show/347125/logout-box.svg"
+              class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+              alt=""
+            />
+            <span
+              class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+            >
+              Log out
+            </span>
+          </a>
+        </div>
+      </aside>
+
+      <main
+        class="flex-1 ml-20 custom_lg:ml-[16.66%] h-screen overflow-y-auto p-5 bg-neutral-100 text-lg"
+      >
+        <section
+          class="flex sticky flex-col self-stretch my-auto mt-1.5 max-md:max-w-full"
+        >
+          <h1 class="text-3xl font-bold text-redux-green">Register Waste</h1>
+          <div class="relative inline-block w-full mt-16 md:w-64">
+            <div
+              class="flex items-center justify-between px-4 py-3 bg-white border border-transparent rounded-xl shadow-md hover:bg-gray-200 focus:bg-gray-100 cursor-pointer transition duration-200"
+              onclick="toggleDropdown()"
+            >
+              <span class="text-stone-900 text-sm"
+                >Solid Waste Composition</span
+              >
+              <img
+                loading="lazy"
+                src="https://www.svgrepo.com/show/335062/dropdown.svg"
+                class="w-5 h-5"
+                alt="Dropdown Icon"
+              />
+            </div>
+
+            <div
+              id="dropdownMenu"
+              class="absolute left-0 w-full mt-1 bg-white border rounded-lg shadow-md hidden z-10"
+            >
+              <ul class="py-1 text-sm">
+                <li
+                  class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                >
+                  Plastic
+                </li>
+                <li
+                  class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                >
+                  Metal
+                </li>
+                <li
+                  class="px-4 py-2 text-stone-900 hover:bg-gray-200 hover:text-gray-900 cursor-pointer transition duration-150"
+                >
+                  Glass
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <script>
+            function toggleDropdown() {
+              const dropdownMenu = document.getElementById("dropdownMenu");
+              dropdownMenu.classList.toggle("hidden");
+            }
+
+            document.addEventListener("click", function (event) {
+              const dropdown = document.getElementById("dropdownMenu");
+              const button = event.target.closest(".relative");
+
+              if (!dropdown.contains(event.target) && !button) {
+                dropdown.classList.add("hidden");
+              }
+            });
+          </script>
+
+          <h2 class="mt-6 ml-4 text-2xl font-semibold text-redux-green">
+            Upload an Image
+          </h2>
+          <div
+            class="flex overflow-hidden flex-col justify-center items-center self-stretch px-32 py-32 mt-4 text-lg bg-white rounded-xl border border-dashed border-neutral-400 min-h-[359px] text-neutral-400 max-md:px-5 max-md:py-24 max-md:mt-10 max-md:max-w-full"
+          >
+            <div
+              class="flex flex-col justify-center items-center max-w-full w-[270px]"
+            >
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/0851b52b6eebc6121945157ab121d7e5f4090d663927be72fdf51ed23347ade4?placeholderIfAbsent=true&apiKey=493880da1219496b8645af306c62489e"
+                class="object-contain aspect-square w-[40px]"
+                alt=""
+              />
+              <p class="mt-5">Click to upload an image</p>
+            </div>
+          </div>
+          <div
+            class="flex flex-wrap gap-5 self-end mt-5 max-w-full text-md font-medium whitespace-nowrap w-[500px] max-md:mt-10"
+          >
+            <button
+              class="overflow-hidden flex-auto gap-2.5 self-stretch px-5 py-3 bg-white rounded-xl border border-solid border-zinc-300 hover:bg-gray-200 text-neutral-800 max-md:px-5"
+            >
+              Cancel
+            </button>
+            <a
+              href="{% url 'successfulreg' %}"
+              class="flex items-center justify-center overflow-hidden flex-auto gap-2.5 self-stretch py-3 px-5 text-white rounded-xl bg-redux-lightgreen hover:bg-redux-green max-md:px-5"
+            >
+              Register
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

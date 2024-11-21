@@ -1,0 +1,102 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>Verify Email | WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+
+  <body>
+    <section
+      class="min-h-screen flex items-stretch bg-gradient-to-b-redux relative"
+    >
+      <div
+        class="xl:flex lg:flex md:flex xl:-translate-y-10 xl:translate-x-14 lg:translate-x-12 md:translate-x-8 w-1/2 hidden bg-no-repeat bg-cover relative items-center overflow-hidden"
+      >
+        <div class="hand-img mt-8 md:mt-72 lg:mt-12">
+          <img
+            src="{% static 'images/againhand.png' %}"
+            class="aspect-[1] w-full max-w-[700px]"
+          />
+        </div>
+      </div>
+      <div
+        class="bg-redux-tintwhite2 lg:w-1/2 w-full flex flex-col items-center justify-center text-center md:px-0 py-0 z-0 xl:rounded-l-[60px] lg:rounded-l-[60px] md:rounded-l-[60px] relative"
+      >
+        <div
+          class="absolute lg:top-0 lg:-left-1 top-0 left-1/2 transform xs:-translate-x-16 xs: md:-translate-x-14 lg:translate-x-0 lg:transform-none"
+        >
+          <img
+            loading="lazy"
+            src="{% static 'images/wasteredux_logo.png' %}"
+            alt="Logo"
+            class="aspect-[0.75] w-[40px] fixed-logo-spacing"
+          />
+        </div>
+
+        <div class="w-full pt-36 flex-grow flex flex-col items-center">
+          <h1
+            class="mt-1 text-5xl xl:max-lg:text-5xl font-bold text-redux-green max-md:mt-1 max-md:max-w-full max-md:text-4xl"
+          >
+            Verify your Email
+          </h1>
+          <p class="mt-4 text-redux-green max-md:mt-2">
+            We've sent a verification code to your email address
+          </p>
+
+          <form action="" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+            <div class="mt-16 mb-16 flex gap-8 justify-center w-full">
+              <input
+                type="text"
+                maxlength="1"
+                class="w-1/6 py-6 text-center rounded-xl border border-solid bg-neutral-100 border-neutral-600 text-xl focus:ring-1 hover:border-x-2 focus:ring-redux-green focus:outline-none"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="w-1/6 py-6 text-center rounded-xl border border-solid bg-neutral-100 border-neutral-600 text-xl focus:ring-1 hover:border-x-2 focus:ring-redux-green focus:outline-none"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="w-1/6 py-6 text-center rounded-xl border border-solid bg-neutral-100 border-neutral-600 text-xl focus:ring-1 hover:border-x-2 focus:ring-redux-green focus:outline-none"
+              />
+              <input
+                type="text"
+                maxlength="1"
+                class="w-1/6 py-6 text-center rounded-xl border border-solid bg-neutral-100 border-neutral-600 text-xl focus:ring-1 hover:border-x-2 focus:ring-redux-green focus:outline-none"
+              />
+            </div>
+
+            <div class="pt-2">
+              <a
+                href="{% url 'verifypass' %}"
+                class="flex justify-center items-center px-16 py-5 w-full text-lg font-medium text-white rounded-xl bg-redux-lightgreen hover:bg-redux-green max-md:px-5 max-md:my-1"
+              >
+                Verify
+              </a>
+            </div>
+
+            <div
+              class="flex gap-1 justify-center items-start text-md text-center w-full mt-12"
+            >
+              <p class="text-redux-green">Didn't receive code?</p>
+              <a
+                href="#"
+                class="font-bold text-blue-500 hover:text-blue-700 hover:underline whitespace-nowrap w-[76px]"
+              >
+                Resend
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

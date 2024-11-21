@@ -1,0 +1,170 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>Change Password | WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+
+  <body>
+    <section
+      class="min-h-screen flex items-stretch bg-gradient-to-b-redux relative"
+    >
+      <div
+        class="xl:flex lg:flex md:flex xl:-translate-y-10 xl:translate-x-14 lg:translate-x-12 md:translate-x-8 w-1/2 hidden bg-no-repeat bg-cover relative items-center overflow-hidden"
+      >
+        <div class="hand-img mt-8 md:mt-72 lg:mt-12">
+          <img
+            src="{% static 'images/passhand.png' %}"
+            class="aspect-[1] w-full max-w-[700px]"
+          />
+        </div>
+      </div>
+      <div
+        class="bg-redux-tintwhite2 lg:w-1/2 w-full flex flex-col items-center justify-center text-center md:px-0 py-0 z-0 xl:rounded-l-[60px] lg:rounded-l-[60px] md:rounded-l-[60px] relative"
+      >
+        <div
+          class="absolute lg:top-0 lg:-left-1 top-0 left-1/2 transform xs:-translate-x-16 xs: md:-translate-x-14 lg:translate-x-0 lg:transform-none"
+        >
+          <img
+            loading="lazy"
+            src="{% static 'images/wasteredux_logo.png' %}"
+            alt="Logo"
+            class="aspect-[0.75] w-[40px] fixed-logo-spacing"
+          />
+        </div>
+
+        <div class="w-full pt-52 flex-grow flex flex-col items-center">
+          <h1
+            class="mt-1 text-5xl xl:max-lg:text-5xl font-bold text-redux-green max-md:mt-1 max-md:max-w-full max-md:text-4xl"
+          >
+            Change Password
+          </h1>
+          <p class="mt-4 text-redux-green max-md:mt-2">
+            Enter your email below to receive a password change verification
+          </p>
+
+          <form
+            id="emailForm"
+            class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto mt-10 relative"
+          >
+            {% csrf_token %}
+            <div class="fixed-container relative">
+              <p
+                id="error-message"
+                class="text-red-500 hidden absolute -top-4 left-0"
+                style="white-space: nowrap"
+              ></p>
+              <div class="pb-2 pt-4">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  class="justify-center items-start px-6 py-5 mt-2 w-full whitespace-nowrap bg-white rounded-xl border border-solid border-redux-gray text-redux-green max-md:px-5 max-md:mt-2 hover:border-x-2 focus:border focus:border-redux-green focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button
+                type="button"
+                onclick="checkEmailLinking()"
+                id="sendEmailButton"
+                class="flex justify-center items-center px-16 py-5 mb-24 w-full text-lg font-medium text-white rounded-xl bg-redux-lightgreen hover:bg-redux-green max-md:px-5 max-md:my-1"
+              >
+                Send email
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Email Linking Notification -->
+    <div
+      id="emailNoticeModal"
+      class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+    >
+      <div class="bg-white rounded-lg w-96 p-6">
+        <h2 class="text-xl font-semibold mb-4 text-neutral-800">Notice</h2>
+        <p class="text-red-600">
+          Once linked, the email cannot be changed and will remain permanently
+          associated with your account.
+        </p>
+        <div class="flex justify-end mt-4 space-x-3">
+          <button
+            onclick="proceedToVerification()"
+            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let modalTriggered = false;
+
+      function checkEmailLinking() {
+        const emailInput = document.getElementById("email").value;
+        const errorMessage = document.getElementById("error-message");
+
+        if (!emailInput) {
+          errorMessage.innerText = "Please enter an email address.";
+          errorMessage.classList.remove("hidden");
+        } else if (
+          !/^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(emailInput)
+        ) {
+          errorMessage.innerText = "Please enter a valid email address.";
+          errorMessage.classList.remove("hidden");
+        } else {
+          errorMessage.classList.add("hidden");
+
+          if (!modalTriggered) {
+            showModal();
+            modalTriggered = true;
+          } else {
+            sendVerificationEmail(emailInput); // Directly call this function on second click
+          }
+        }
+      }
+
+      function showModal() {
+        document.getElementById("emailNoticeModal").classList.remove("hidden");
+      }
+
+      function proceedToVerification() {
+        document.getElementById("emailNoticeModal").classList.add("hidden");
+        modalTriggered = true; // Allows second click to send verification email
+      }
+
+      function sendVerificationEmail(email) {
+        fetch("{% url 'send_verification_email' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
+          body: JSON.stringify({ email: email }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Verification email sent successfully!");
+              window.location.href = "{% url 'verifypass' %}";
+            } else {
+              alert("Failed to send verification email. Please try again.");
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>

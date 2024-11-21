@@ -1,0 +1,117 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>WasteRedux | Account Locked</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+  </head>
+  <body
+    class="flex items-center justify-center h-screen bg-gradient-to-b from-redux-green to-white"
+  >
+    <div
+      class="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg text-center max-w-sm w-full"
+    >
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 512.001 512.001"
+        xml:space="preserve"
+        width="98px"
+        height="98px"
+        fill="#000000"
+        class="mx-auto mb-5"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <g>
+            <rect
+              x="348.315"
+              y="290.037"
+              style="fill: #cff09e"
+              width="87.23"
+              height="66.389"
+            ></rect>
+            <rect
+              x="348.315"
+              y="356.426"
+              style="fill: #cff09e"
+              width="87.23"
+              height="66.389"
+            ></rect>
+          </g>
+          <g>
+            <path
+              style="fill: #507c5c"
+              d="M435.543,275.647h-29.235v-21.065c0-7.943-6.44-14.382-14.382-14.382h-43.616 c-7.942,0-14.382,6.439-14.382,14.382c0,7.943,6.44,14.382,14.382,14.382h29.234v6.682h-29.235 c-7.942,0-14.382,6.439-14.382,14.382v66.395v66.395c0,7.943,6.44,14.382,14.382,14.382h29.235v12.959 c0,18.237-14.837,33.075-33.074,33.075H123.916c-18.238,0-33.075-14.837-33.075-33.075V268.965h193.925 c7.942,0,14.382-6.439,14.382-14.382c0-7.943-6.44-14.382-14.382-14.382H76.459c-7.942,0-14.382,6.439-14.382,14.382v195.579 c0,34.098,27.741,61.84,61.84,61.84h220.552c34.098,0,61.839-27.741,61.839-61.84v-12.959h29.235 c7.942,0,14.382-6.439,14.382-14.382v-66.395V290.03C449.925,282.086,443.485,275.647,435.543,275.647z M362.688,304.412h29.235 h29.235v37.63h-58.47L362.688,304.412L362.688,304.412z M421.16,408.436h-29.235H362.69v-37.63h58.47V408.436z"
+            ></path>
+            <path
+              style="fill: #507c5c"
+              d="M334.87,212.881c-7.942,0-14.382-6.439-14.382-14.382V115.06c0-47.583-38.712-86.295-86.295-86.295 s-86.295,38.712-86.295,86.295v83.438c0,7.943-6.44,14.382-14.382,14.382c-7.942,0-14.382-6.439-14.382-14.382V115.06 C119.133,51.616,170.749,0,234.193,0s115.06,51.616,115.06,115.06v83.438C349.252,206.442,342.812,212.881,334.87,212.881z"
+            ></path>
+          </g>
+          <polygon
+            style="fill: #cff09e"
+            points="294.36,349.153 261.138,315.931 234.191,342.878 207.246,315.931 174.024,349.153 200.969,376.1 174.024,403.047 207.246,436.269 234.191,409.322 261.138,436.269 294.36,403.047 267.413,376.1 "
+          ></polygon>
+          <path
+            style="fill: #507c5c"
+            d="M261.138,450.652L261.138,450.652c-3.814,0-7.473-1.516-10.17-4.213l-16.776-16.777l-16.777,16.777 c-2.698,2.697-6.356,4.213-10.17,4.213c-3.814,0-7.472-1.516-10.17-4.213l-33.222-33.222c-2.697-2.697-4.213-6.356-4.213-10.17 s1.516-7.473,4.213-10.17l16.777-16.777l-16.777-16.777c-2.697-2.697-4.213-6.356-4.213-10.17c0-3.814,1.516-7.473,4.213-10.17 l33.222-33.222c5.618-5.615,14.722-5.616,20.341,0l16.777,16.777l16.776-16.777c5.618-5.616,14.722-5.618,20.341,0l33.224,33.222 c2.697,2.697,4.213,6.356,4.213,10.17c0,3.814-1.516,7.473-4.213,10.17L287.757,376.1l16.777,16.777 c2.697,2.697,4.213,6.356,4.213,10.17s-1.516,7.473-4.213,10.17l-33.224,33.222C268.61,449.136,264.952,450.652,261.138,450.652z M194.363,403.047l12.881,12.882l16.777-16.779c2.698-2.697,6.356-4.213,10.17-4.213l0,0c3.814,0,7.473,1.516,10.17,4.213 l16.776,16.777l12.882-12.882l-16.777-16.777c-2.697-2.697-4.213-6.356-4.213-10.17s1.516-7.473,4.213-10.17l16.777-16.777 l-12.882-12.882l-16.776,16.777c-5.618-5.616-14.722-5.618-20.341,0l-16.777-16.777l-12.881,12.882l16.777,16.777 c2.697,2.697,4.213,6.356,4.213,10.17s-1.516,7.473-4.213,10.17L194.363,403.047z"
+          ></path>
+        </g>
+      </svg>
+      <h1 class="text-2xl font-bold text-redux-green mb-4">
+        Your account is temporarily locked due to multiple failed login
+        attempts.
+      </h1>
+      <p class="text-base text-stone-800">
+        Please wait for
+        <span id="countdown" class="font-semibold text-red-600"></span> to try
+        again.
+      </p>
+    </div>
+
+    <script>
+      const lockoutDuration = 180;
+
+      if (!localStorage.getItem("lockoutExpiration")) {
+        const expirationTime = new Date().getTime() + lockoutDuration * 1000;
+        localStorage.setItem("lockoutExpiration", expirationTime);
+      }
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const lockoutExpiration = parseInt(
+          localStorage.getItem("lockoutExpiration")
+        );
+        const timeRemaining = Math.max(0, lockoutExpiration - now);
+
+        if (timeRemaining <= 0) {
+          localStorage.removeItem("lockoutExpiration");
+          window.location.reload();
+        } else {
+          const minutes = Math.floor(timeRemaining / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+          document.getElementById(
+            "countdown"
+          ).textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+        }
+      }
+
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>

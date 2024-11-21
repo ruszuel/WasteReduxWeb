@@ -1,0 +1,17 @@
+{
+    "builds": [
+      {
+        "src": "wasteredux_site/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "wasteredux_site/wsgi.py"
+      }
+    ],
+    "buildCommand": "./install_mysqlclient.sh && vercel build"
+  }
+  

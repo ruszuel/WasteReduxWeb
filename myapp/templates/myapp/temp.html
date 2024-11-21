@@ -1,0 +1,1610 @@
+{% load static tailwind_tags %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% tailwind_css %}
+    <title>WasterRedux</title>
+    <link
+      rel="icon"
+      type="resized_logo.png"
+      href="{% static 'images/resized_logo.png' %}"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+  </head>
+
+  <body>
+    <div class="flex h-screen overflow-hidden">
+      <aside
+        class="flex flex-col w-20 custom_lg:w-1/6 h-screen fixed top-0 left-0 overflow-y-auto bg-neutral-100"
+      >
+        <div
+          class="flex flex-col grow px-3 py-6 custom_lg:px-4 mx-auto w-full text-md bg-white border-r border-solid border-zinc-300"
+        >
+          <header
+            class="flex gap-3 text-2xl font-bold text-neutral-500 items-center custom_lg:justify-center justify-center"
+          >
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8ee72c842d258565731666e33bc76535290acfc1ed8770a8712ed85d7bd7022?apiKey=493880da1219496b8645af306c62489e&"
+              class="shrink-0 mt-1 custom_lg:mt-auto w-6 aspect-[0.74]"
+              alt=""
+            />
+            <h1 class="flex gap-1 mt-1.5 custom_lg:flex hidden">
+              <span class="text-redux-green">Waste</span>
+              <span class="text-redux-lightgreen">Redux</span>
+            </h1>
+          </header>
+
+          <nav class="mt-16 custom_lg:mt-16">
+            <div class="flex flex-col gap-3">
+              <a
+                href="{% url 'dashboard' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-white whitespace-nowrap rounded-xl bg-redux-lightgreen max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="2 0 20 20"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M6.25 10.5C6.25 10.0858 5.91421 9.75 5.5 9.75C5.08579 9.75 4.75 10.0858 4.75 10.5H6.25ZM11.5 19.75C11.9142 19.75 12.25 19.4142 12.25 19C12.25 18.5858 11.9142 18.25 11.5 18.25V19.75ZM4.75 10.5C4.75 10.9142 5.08579 11.25 5.5 11.25C5.91421 11.25 6.25 10.9142 6.25 10.5H4.75ZM11.5 5.75C11.9142 5.75 12.25 5.41421 12.25 5C12.25 4.58579 11.9142 4.25 11.5 4.25V5.75ZM5.5 9.75C5.08579 9.75 4.75 10.0858 4.75 10.5C4.75 10.9142 5.08579 11.25 5.5 11.25V9.75ZM11.5 11.25C11.9142 11.25 12.25 10.9142 12.25 10.5C12.25 10.0858 11.9142 9.75 11.5 9.75V11.25ZM10.75 10.5C10.75 10.9142 11.0858 11.25 11.5 11.25C11.9142 11.25 12.25 10.9142 12.25 10.5H10.75ZM12.25 5C12.25 4.58579 11.9142 4.25 11.5 4.25C11.0858 4.25 10.75 4.58579 10.75 5H12.25ZM12.25 10.5C12.25 10.0858 11.9142 9.75 11.5 9.75C11.0858 9.75 10.75 10.0858 10.75 10.5H12.25ZM10.75 14C10.75 14.4142 11.0858 14.75 11.5 14.75C11.9142 14.75 12.25 14.4142 12.25 14H10.75ZM11.5 18.25C11.0858 18.25 10.75 18.5858 10.75 19C10.75 19.4142 11.0858 19.75 11.5 19.75V18.25ZM20.25 14C20.25 13.5858 19.9142 13.25 19.5 13.25C19.0858 13.25 18.75 13.5858 18.75 14H20.25ZM10.75 19C10.75 19.4142 11.0858 19.75 11.5 19.75C11.9142 19.75 12.25 19.4142 12.25 19H10.75ZM12.25 14C12.25 13.5858 11.9142 13.25 11.5 13.25C11.0858 13.25 10.75 13.5858 10.75 14H12.25ZM11.5 4.25C11.0858 4.25 10.75 4.58579 10.75 5C10.75 5.41421 11.0858 5.75 11.5 5.75V4.25ZM18.75 14C18.75 14.4142 19.0858 14.75 19.5 14.75C19.9142 14.75 20.25 14.4142 20.25 14H18.75ZM19.5 14.75C19.9142 14.75 20.25 14.4142 20.25 14C20.25 13.5858 19.9142 13.25 19.5 13.25V14.75ZM11.5 13.25C11.0858 13.25 10.75 13.5858 10.75 14C10.75 14.4142 11.0858 14.75 11.5 14.75V13.25ZM4.75 10.5L4.75 15H6.25L6.25 10.5H4.75ZM4.75 15C4.75 17.6234 6.87665 19.75 9.5 19.75V18.25C7.70507 18.25 6.25 16.7949 6.25 15H4.75ZM9.5 19.75H11.5V18.25H9.5V19.75ZM6.25 10.5V9H4.75V10.5H6.25ZM6.25 9C6.25 7.20507 7.70507 5.75 9.5 5.75V4.25C6.87665 4.25 4.75 6.37665 4.75 9H6.25ZM9.5 5.75H11.5V4.25H9.5V5.75ZM5.5 11.25H11.5V9.75H5.5V11.25ZM12.25 10.5V5H10.75V10.5H12.25ZM10.75 10.5V14H12.25V10.5H10.75ZM11.5 19.75H15.5V18.25H11.5V19.75ZM15.5 19.75C18.1234 19.75 20.25 17.6234 20.25 15H18.75C18.75 16.7949 17.2949 18.25 15.5 18.25V19.75ZM20.25 15V14H18.75V15H20.25ZM12.25 19V14H10.75V19H12.25ZM11.5 5.75H15.5L15.5 4.25H11.5V5.75ZM15.5 5.75C17.2949 5.75 18.75 7.20507 18.75 9L20.25 9C20.25 6.37665 18.1234 4.25 15.5 4.25L15.5 5.75ZM18.75 9V14H20.25V9L18.75 9ZM19.5 13.25H11.5V14.75H19.5V13.25Z"
+                  ></path>
+                </svg>
+                <span class="ml-5 max-custom_lg:hidden">Dashboard</span>
+              </a>
+
+              <a
+                href="{% url 'profiles' %}"
+                class="flex items-center justify-start px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M11.9999 17C15.6623 17 18.8649 18.5751 20.607 20.9247L18.765 21.796C17.3473 20.1157 14.8473 19 11.9999 19C9.15248 19 6.65252 20.1157 5.23479 21.796L3.39355 20.9238C5.13576 18.5747 8.33796 17 11.9999 17ZM11.9999 2C14.7613 2 16.9999 4.23858 16.9999 7V10C16.9999 12.6888 14.8776 14.8818 12.2168 14.9954L11.9999 15C9.23847 15 6.9999 12.7614 6.9999 10V7C6.9999 4.31125 9.1222 2.11818 11.783 2.00462L11.9999 2ZM11.9999 4C10.4022 4 9.09623 5.24892 9.00499 6.82373L8.9999 7V10C8.9999 11.6569 10.343 13 11.9999 13C13.5976 13 14.9036 11.7511 14.9948 10.1763L14.9999 10V7C14.9999 5.34315 13.6567 4 11.9999 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                >
+                  Profile
+                </span>
+              </a>
+              <a
+                href="{% url 'users' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M12 11C14.7614 11 17 13.2386 17 16V22H15V16C15 14.4023 13.7511 13.0963 12.1763 13.0051L12 13C10.4023 13 9.09634 14.2489 9.00509 15.8237L9 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5.5 14C5.77885 14 6.05009 14.0326 6.3101 14.0942C6.14202 14.594 6.03873 15.122 6.00896 15.6693L6 16L6.0007 16.0856C5.88757 16.0456 5.76821 16.0187 5.64446 16.0069L5.5 16C4.7203 16 4.07955 16.5949 4.00687 17.3555L4 17.5V22H2V17.5C2 15.567 3.567 14 5.5 14ZM18.5 14C20.433 14 22 15.567 22 17.5V22H20V17.5C20 16.7203 19.4051 16.0796 18.6445 16.0069L18.5 16C18.3248 16 18.1566 16.03 18.0003 16.0852L18 16C18 15.3343 17.8916 14.694 17.6915 14.0956C17.9499 14.0326 18.2211 14 18.5 14ZM5.5 8C6.88071 8 8 9.11929 8 10.5C8 11.8807 6.88071 13 5.5 13C4.11929 13 3 11.8807 3 10.5C3 9.11929 4.11929 8 5.5 8ZM18.5 8C19.8807 8 21 9.11929 21 10.5C21 11.8807 19.8807 13 18.5 13C17.1193 13 16 11.8807 16 10.5C16 9.11929 17.1193 8 18.5 8ZM5.5 10C5.22386 10 5 10.2239 5 10.5C5 10.7761 5.22386 11 5.5 11C5.77614 11 6 10.7761 6 10.5C6 10.2239 5.77614 10 5.5 10ZM18.5 10C18.2239 10 18 10.2239 18 10.5C18 10.7761 18.2239 11 18.5 11C18.7761 11 19 10.7761 19 10.5C19 10.2239 18.7761 10 18.5 10ZM12 2C14.2091 2 16 3.79086 16 6C16 8.20914 14.2091 10 12 10C9.79086 10 8 8.20914 8 6C8 3.79086 9.79086 2 12 2ZM12 4C10.8954 4 10 4.89543 10 6C10 7.10457 10.8954 8 12 8C13.1046 8 14 7.10457 14 6C14 4.89543 13.1046 4 12 4Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Users</span
+                >
+              </a>
+              <a
+                href="{% url 'filtering' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M7 3V6H3V8H7V11H10V3H7ZM12 8H21V6H12V8ZM17 13V16H21V18H17V21H14V13H17ZM12 18H3V16H12V18Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Waste Filtering</span
+                >
+              </a>
+
+              <a
+                href="{% url 'filteredimages' %}"
+                class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+                >
+                  <path
+                    d="M5 11.1005L7 9.1005L12.5 14.6005L16 11.1005L19 14.1005V5H5V11.1005ZM5 13.9289V19H8.1005L11.0858 16.0147L7 11.9289L5 13.9289ZM10.9289 19H19V16.9289L16 13.9289L10.9289 19ZM4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM15.5 10C14.6716 10 14 9.32843 14 8.5C14 7.67157 14.6716 7 15.5 7C16.3284 7 17 7.67157 17 8.5C17 9.32843 16.3284 10 15.5 10Z"
+                  ></path>
+                </svg>
+                <span
+                  class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+                  >Filtered Images</span
+                >
+              </a>
+            </div>
+          </nav>
+          <a
+            href="{% url 'logout' %}"
+            class="flex justify-start items-center px-5 py-3.5 custom_lg:py-3 mt-60 w-full text-stone-900 whitespace-nowrap rounded-xl bg-white hover:bg-redux-lightgreen2 transition-colors duration-75 max-custom_lg:justify-center max-custom_lg:px-0 group"
+          >
+            <img
+              loading="lazy"
+              src="https://www.svgrepo.com/show/347125/logout-box.svg"
+              class="shrink-0 my-auto w-5 aspect-square transition-colors duration-75 group-hover:brightness-0 group-hover:invert"
+              alt=""
+            />
+            <span
+              class="ml-5 transition-colors duration-75 group-hover:text-white max-custom_lg:hidden"
+            >
+              Log out
+            </span>
+          </a>
+        </div>
+      </aside>
+      <main
+        class="flex-1 ml-20 custom_lg:ml-[16.66%] h-screen overflow-y-auto bg-neutral-100 text-lg"
+      >
+        <nav
+          class="sticky top-0 px-0 bg-neutral-100 z-10 w-full pt-7 pb-3 pl-5 text-3xl font-bold text-redux-green"
+        >
+          Dashboard
+        </nav>
+
+        <div id="alertModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+          <div class="bg-white w-80 p-6 rounded-lg shadow-lg">
+              <h2 class="text-lg font-semibold mb-4 text-center">Incomplete Date Range</h2> 
+              <p class="text-sm text-gray-700 mb-6 text-center">Please select both a start date and an end date to apply the filter.</p>
+              <div class="flex justify-center">
+                  <button onclick="closeAlertDateRangeModal()" class="bg-redux-lightgreen text-white text-base font-bold px-6 py-2 rounded-lg hover:bg-redux-lightgreen2">
+                      OK
+                  </button>
+              </div>
+          </div>
+        </div>
+      
+        <script>
+          function openAlertDateRangeModal() {
+              document.getElementById("alertModal").classList.remove("hidden");
+          }
+
+          function closeAlertDateRangeModal() {
+              document.getElementById("alertModal").classList.add("hidden");
+          }
+        </script>
+
+        <section class="flex flex-row justify-between gap-5 p-5 mt-7 max-md:flex-col">
+  
+          <div class="flex flex-col gap-5 w-2/3 max-md:flex-col">
+     
+            <div class="flex flex-row gap-5 w-full">
+              <div class="flex flex-col py-8 w-1/2 bg-white rounded-2xl shadow-md">
+                  <div class="flex flex-col items-start ml-8">
+                      <h3 class="text-xl font-medium text-black mb-6">Total Users</h3>
+                      <p class="text-4xl font-semibold text-neutral-800 total-users">0</p>
+                  </div>
+              </div>
+          
+              <div class="flex flex-col py-8 w-1/2 bg-white rounded-2xl shadow-md">
+                  <div class="flex flex-col items-start ml-8">
+                      <h3 class="text-xl font-medium text-black mb-6">Total Solid Waste Registered</h3>
+                      <p class="text-4xl font-semibold text-neutral-800 total-solid-wastes-registered">0</p>
+                  </div>
+              </div>
+            </div>
+          
+
+            <div class="p-6 bg-white rounded-lg shadow-md">
+              <div class="flex justify-between items-center mt-4 mb-12">
+                <h2 class="text-xl font-semibold text-black">Overall Solid Waste Summary by College</h2>
+                <button onclick="exportToPDFOverallSolidWasteSummary()" class="flex items-center gap-2 px-3 py-2 bg-redux-lightgreen text-base text-white font-semibold rounded-lg shadow-md hover:bg-redux-lightgreen2 focus:outline-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                    <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM13 9V16H11V9H6L12 3L18 9H13Z"></path>
+                  </svg>
+                  Export PDF
+                </button>
+              </div>
+            
+              <div class="flex justify-between items-center mb-8">
+                <form method="GET" action="{% url 'dashboard' %}">
+                  <select id="collegeSelect" name="college" class="border pr-9 pl-3 py-2 rounded appearance-none cursor-pointer bg-white focus:outline-none" onchange="this.form.submit()">
+                    <option value="All Colleges" {% if selected_college == 'All Colleges' %} selected {% endif %}>All Colleges</option>
+                    {% for college in college_departments %}
+                      <option value="{{ college }}" {% if college == selected_college %} selected {% endif %}>{{ college }}</option>
+                    {% endfor %}
+                  </select>
+                </form>
+              </div>
+
+              <script>
+                let selectedColleges = '{{ selected_college|escapejs }}';
+                
+                if (selectedColleges === "All Colleges") {
+                    selectedColleges = [];
+                } else {
+                    selectedColleges = [selectedColleges];
+                }
+            
+                console.log("Selected Colleges:", selectedColleges);
+              </script>
+            
+              <div class="bg-white rounded-md overflow-hidden">
+                <table class="w-full border border-gray-300">
+                  <thead>
+                      <tr class="bg-redux-lightgreen text-white">
+                          <th class="p-3 text-left border-b">Category</th>
+                          <th class="p-3 text-left border-b">Scanned</th>
+                          <th class="p-3 text-left border-b">Registered</th>
+                          <th class="p-3 text-left border-b">Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for row in table_data %}
+                          <tr>
+                              <td class="p-3 border-b">{{ row.category }}</td>
+                              <td class="p-3 border-b">{{ row.scanned }}</td>
+                              <td class="p-3 border-b">{{ row.registered }}</td>
+                              <td class="p-3 border-b">{{ row.total }}</td>
+                          </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              
+              </div>
+
+              <div class="flex items-center mt-9 ml-0">
+                <label for="tableStartDate" class="text-sm text-neutral-600 mr-2">Start Date:</label>
+                <input type="date" id="tableStartDate" class="text-sm text-stone-700 border rounded p-1 mr-2">
+  
+                <label for="tableEndDate" class="text-sm text-neutral-600 mr-2">End Date:</label>
+                <input type="date" id="tableEndDate" class="text-sm text-stone-700 border rounded p-1 mr-4">
+  
+                <button id="tableFilterButton" class="bg-redux-lightgreen text-white text-xs px-4 py-2 rounded-lg hover:bg-redux-lightgreen2 mr-2 shadow-md">Filter</button>
+                <button id="tableResetButton" class="bg-gray-100 text-stone-600 text-xs px-4 py-2 rounded-lg hover:bg-gray-200 shadow-md">Reset</button>
+              </div> 
+            </div>
+          </div>
+
+          <script>
+            function fetchFilteredData() {
+              const startDate = $('#start_date').val();
+              const endDate = $('#end_date').val();
+              const college = $('#college').val();
+
+              $.ajax({
+                  url: '/get_table_data/',
+                  data: { start_date: startDate, end_date: endDate, college: college },
+                  success: function(response) {
+                      const tableBody = $('table tbody');
+                      tableBody.empty();
+
+                      response.table_data.forEach(row => {
+                          tableBody.append(`
+                              <tr>
+                                  <td class="p-3 border-b">${row.category}</td>
+                                  <td class="p-3 border-b">${row.scanned}</td>
+                                  <td class="p-3 border-b">${row.registered}</td>
+                                  <td class="p-3 border-b">${row.total}</td>
+                              </tr>
+                          `);
+                      });
+                  },
+                  error: function() {
+                      alert('Failed to fetch data.');
+                  }
+              });
+           }
+
+           async function fetchTableData() {
+              const startDate = document.getElementById("tableStartDate").value;
+              const endDate = document.getElementById("tableEndDate").value;
+              const college = document.getElementById("collegeSelect").value || "All Colleges";
+
+              try {
+                  const response = await fetch(
+                      `/get_table_data?start_date=${startDate}&end_date=${endDate}&college=${college}`
+                  );
+                  const data = await response.json();
+
+                  const tableBody = document.querySelector("table tbody");
+                  tableBody.innerHTML = "";
+
+                  data.table_data.forEach((row) => {
+                      const tr = document.createElement("tr");
+                      tr.innerHTML = `
+                          <td class="p-3 border-b">${row.category}</td>
+                          <td class="p-3 border-b">${row.scanned}</td>
+                          <td class="p-3 border-b">${row.registered}</td>
+                          <td class="p-3 border-b">${row.total}</td>
+                      `;
+                      tableBody.appendChild(tr);
+                  });
+
+                  updateTotals(data.totals);
+              } catch (error) {
+                  console.error("Failed to fetch data:", error);
+              }
+            }
+
+
+            function updateTable(tableData) {
+              const tableBody = document.querySelector("tbody");
+              tableBody.innerHTML = "";
+
+              tableData.forEach(row => {
+                  const tr = document.createElement("tr");
+                  tr.innerHTML = `
+                      <td class="p-3 border-b">${row.category}</td>
+                      <td class="p-3 border-b">${row.scanned}</td>
+                      <td class="p-3 border-b">${row.registered}</td>
+                      <td class="p-3 border-b">${row.total}</td>
+                  `;
+                  tableBody.appendChild(tr);
+              });
+            }
+
+            document.getElementById("tableFilterButton").addEventListener("click", function () {
+                const startDateElement = document.getElementById("tableStartDate");
+                const endDateElement = document.getElementById("tableEndDate");
+
+                if (!startDateElement || !endDateElement) {
+                    console.error("Date inputs are missing from the DOM.");
+                    alert("Date inputs are missing. Please check the HTML structure.");
+                    return;
+                }
+
+                const startDate = startDateElement.value;
+                const endDate = endDateElement.value;
+
+                if ((startDate && !endDate) || (!startDate && endDate)) {
+                    openAlertDateRangeModal();
+                    return;
+                }
+
+                if (new Date(startDate) > new Date(endDate)) {
+                    alert("Start date cannot be later than the end date.");
+                    return;
+                }
+
+                sessionStorage.setItem("tableStartDate", startDate);
+                sessionStorage.setItem("tableEndDate", endDate);
+
+                fetchTableData(); 
+            });
+
+
+            document.getElementById("tableResetButton").addEventListener("click", function () {
+                document.getElementById("tableStartDate").value = "";
+                document.getElementById("tableEndDate").value = "";
+
+                sessionStorage.removeItem("tableStartDate");
+                sessionStorage.removeItem("tableEndDate");
+
+                fetchTableData(); 
+            });
+
+          </script>   
+
+          <script type="application/json" id="scannedPercentages">
+            {{ scanned_percentages|safe }}
+          </script>
+          
+          <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const plasticElement = document.getElementById('plasticPercentage');
+                const metalElement = document.getElementById('metalPercentage');
+                const glassElement = document.getElementById('glassPercentage');
+                const scannedPercentages = JSON.parse(document.getElementById("scannedPercentages").textContent);
+
+                if (plasticElement) {
+                    plasticElement.textContent = `${scannedPercentages.Plastic || 0}%`;
+                }
+                if (metalElement) {
+                    metalElement.textContent = `${scannedPercentages.Metal || 0}%`;
+                }
+                if (glassElement) {
+                    glassElement.textContent = `${scannedPercentages.Glass || 0}%`;
+                }
+            });
+          </script>
+        
+          <div class="flex flex-col gap-5 w-1/3 bg-white rounded-2xl shadow-md p-7">
+            <h2 class="text-xl font-semibold text-black mb-5 text-center">Percentage of Scanned Solid Waste</h2>
+        
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-evenly w-full">
+                  <canvas id="plasticChart" class="max-w-[120px] max-h-[120px]"></canvas>
+                  <div class="flex flex-col ml-3 text-center">
+                      <p id="plasticPercentage" class="text-4xl font-semibold text-neutral-800 mb-2">0%</p>
+                      <p class="text-base text-neutral-600">Scanned Plastics</p>
+                  </div>
+              </div>
+            </div>
+          
+            <hr class="border-t border-neutral-200 w-full my-2">
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-evenly w-full">
+                  <canvas id="metalChart" class="max-w-[120px] max-h-[120px]"></canvas>
+                  <div class="flex flex-col ml-3 text-center">
+                      <p id="metalPercentage" class="text-4xl font-semibold text-neutral-800 mb-2">0%</p>
+                      <p class="text-base text-neutral-600">Scanned Metals</p>
+                  </div>
+              </div>
+            </div>
+          
+            <hr class="border-t border-neutral-200 w-full my-2">
+            <div class="flex flex-col items-center">
+              <div class="flex items-center justify-evenly w-full">
+                  <canvas id="glassChart" class="max-w-[120px] max-h-[120px]"></canvas>
+                  <div class="flex flex-col ml-3 text-center">
+                      <p id="glassPercentage" class="text-4xl font-semibold text-neutral-800 mb-2">0%</p>
+                      <p class="text-base text-neutral-600">Scanned Glasses</p>
+                  </div>
+              </div>
+            </div>
+          
+          </div>
+        </section>
+        
+        <script id="scannedCounts" type="application/json">
+          {{ scanned_counts|safe }}
+        </script>
+        <script id="registeredCounts" type="application/json">
+            {{ registered_counts|safe }}
+        </script>
+        <script id="totalCounts" type="application/json">
+            {{ total_counts|safe }}
+        </script>
+      
+      
+        <script>
+          function formatNumber(num) {
+            if (num % 1 === 0) {
+                return num.toFixed(0); 
+            }
+            return num.toFixed(2); 
+          }
+
+          function updateTotals(totals) {
+            document.querySelector(".total-users").textContent = formatNumber(totals.total_users);
+
+            document.querySelector(".total-solid-wastes-registered").textContent = formatNumber(totals.total_solid_wastes_registered);
+
+            const plasticPercentage = formatNumber(totals.percentages.Plastic || 0);
+            const metalPercentage = formatNumber(totals.percentages.Metal || 0);
+            const glassPercentage = formatNumber(totals.percentages.Glass || 0);
+
+            document.getElementById("plasticPercentage").textContent = `${plasticPercentage}%`;
+            document.getElementById("metalPercentage").textContent = `${metalPercentage}%`;
+            document.getElementById("glassPercentage").textContent = `${glassPercentage}%`;
+
+            if (window.plasticChart) {
+                window.plasticChart.data.datasets[0].data = [plasticPercentage, 100 - plasticPercentage];
+                window.plasticChart.update();
+            }
+
+            if (window.metalChart) {
+                window.metalChart.data.datasets[0].data = [metalPercentage, 100 - metalPercentage];
+                window.metalChart.update();
+            }
+
+            if (window.glassChart) {
+                window.glassChart.data.datasets[0].data = [glassPercentage, 100 - glassPercentage];
+                window.glassChart.update();
+            }
+          }
+
+          console.log("Scanned Percentages:", scannedPercentages); 
+          
+          document.addEventListener("DOMContentLoaded", function () {
+            function updatePieChartsFromText() {
+                const plasticPercentage = parseFloat(document.getElementById("plasticPercentage").textContent) || 0;
+                const metalPercentage = parseFloat(document.getElementById("metalPercentage").textContent) || 0;
+                const glassPercentage = parseFloat(document.getElementById("glassPercentage").textContent) || 0;
+
+                if (window.plasticChart && typeof window.plasticChart.destroy === "function") {
+                    window.plasticChart.destroy();
+                }
+                if (window.metalChart && typeof window.metalChart.destroy === "function") {
+                    window.metalChart.destroy();
+                }
+                if (window.glassChart && typeof window.glassChart.destroy === "function") {
+                    window.glassChart.destroy();
+                }
+
+                const plasticCtx = document.getElementById("plasticChart").getContext("2d");
+                window.plasticChart = new Chart(plasticCtx, {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Plastic", "Other Solid Wastes"],
+                        datasets: [{
+                            data: [plasticPercentage, 100 - plasticPercentage],
+                            backgroundColor: ["#A7CC90", "#E5E7EB"],
+                        }],
+                    },
+                    options: {
+                        plugins: { legend: { display: false } },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                    },
+                });
+
+                const metalCtx = document.getElementById("metalChart").getContext("2d");
+                window.metalChart = new Chart(metalCtx, {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Metal", "Other Solid Wastes"],
+                        datasets: [{
+                            data: [metalPercentage, 100 - metalPercentage],
+                            backgroundColor: ["#BCCCE6", "#E5E7EB"],
+                        }],
+                    },
+                    options: {
+                        plugins: { legend: { display: false } },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                    },
+                });
+
+                const glassCtx = document.getElementById("glassChart").getContext("2d");
+                window.glassChart = new Chart(glassCtx, {
+                    type: "doughnut",
+                    data: {
+                        labels: ["Glass", "Other Solid Wastes"],
+                        datasets: [{
+                            data: [glassPercentage, 100 - glassPercentage],
+                            backgroundColor: ["#E6A9F4", "#E5E7EB"],
+                        }],
+                    },
+                    options: {
+                        plugins: { legend: { display: false } },
+                        responsive: true,
+                        maintainAspectRatio: true,
+                    },
+                });
+            }
+
+            updatePieChartsFromText();
+
+            document.getElementById("tableFilterButton").addEventListener("click", async function () {
+                const startDate = document.getElementById("tableStartDate").value;
+                const endDate = document.getElementById("tableEndDate").value;
+                const college = document.getElementById("collegeFilter").value || "All Colleges";
+
+                if (!startDate || !endDate) {
+                    openAlertDateRangeModal();
+                    return;
+                }
+
+                fetch(`/get_table_data?start_date=${startDate}&end_date=${endDate}&college=${college}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      if (!data.has_data) {
+                          document.getElementById("plasticPercentage").textContent = "0%";
+                          document.getElementById("metalPercentage").textContent = "0%";
+                          document.getElementById("glassPercentage").textContent = "0%";
+                          updatePieChartsFromText(); 
+                          return;
+                      }
+
+                      const { percentages } = data.totals;
+                      document.getElementById("plasticPercentage").textContent = `${formatNumber(percentages.Plastic)}%`;
+                      document.getElementById("metalPercentage").textContent = `${formatNumber(percentages.Metal)}%`;
+                      document.getElementById("glassPercentage").textContent = `${formatNumber(percentages.Glass)}%`;
+
+                      updatePieChartsFromText(); 
+                  })
+                  .catch(error => {
+                      console.error("Failed to fetch data:", error);
+                  });
+            });
+
+            document.getElementById("tableResetButton").addEventListener("click", function () {
+                document.getElementById("plasticPercentage").textContent = "0%";
+                document.getElementById("metalPercentage").textContent = "0%";
+                document.getElementById("glassPercentage").textContent = "0%";
+
+                updatePieChartsFromText();
+            });
+
+          });
+        </script>
+
+        <script>
+          async function exportToPDFOverallSolidWasteSummary() {
+              const { jsPDF } = window.jspdf;
+              const pdf = new jsPDF("p", "mm", "a4");
+              const margin = 12.7;
+              const contentWidth = 210 - margin * 2;
+              const dateGenerated = formatDateTime(new Date());
+              const headers = ["Image", "Category", "Type", "Location", "Image Status", "Date"];
+              const college = document.getElementById("collegeSelect").value || "All Colleges";
+
+              const startDateElement = document.getElementById("tableStartDate");
+              const endDateElement = document.getElementById("tableEndDate");
+
+              const startDate = startDateElement ? startDateElement.value : null;
+              const endDate = endDateElement ? endDateElement.value : null;
+
+              const exportButton = document.querySelector("button[onclick='exportToPDFOverallSolidWasteSummary()']");
+
+              const spinner = document.createElement("span");
+              spinner.className = "loader-spinner";
+              spinner.style.marginLeft = "10px";
+              exportButton.appendChild(spinner);
+
+              exportButton.disabled = true;
+              exportButton.textContent = "Exporting...";
+
+              try {
+                  if ((startDate && !endDate) || (!startDate && endDate)) {
+                      openAlertDateRangeModal();
+                      return;
+                  }
+
+                  let queryParams = `college=${encodeURIComponent(college)}`;
+                  if (startDate) queryParams += `&start_date=${encodeURIComponent(startDate)}`;
+                  if (endDate) queryParams += `&end_date=${encodeURIComponent(endDate)}`;
+
+                  const response = await fetch(`/export_filtered_college_data?${queryParams}`);
+                  if (!response.ok) {
+                      throw new Error(`Server error: ${response.status} ${response.statusText}`);
+                  }
+
+                  const users = await response.json();
+                  if (!users.length) {
+                      alert("No data available to export.");
+                      return;
+                  }
+
+                  const groupedData = groupUsersByCollege(users);
+
+                  const logoPath = "{% static 'images/resized_logo.png' %}";
+                  pdf.addImage(logoPath, "PNG", margin, margin, 9, 9);
+                  pdf.setFontSize(14);
+                  pdf.setFont("helvetica", "bold");
+                  pdf.text("Waste Redux", margin + 10, margin + 8);
+                  pdf.setFontSize(11);
+                  pdf.text(`Overall Solid Waste Summary (${college})`, margin + contentWidth / 2, margin + 22, {
+                      align: "center",
+                  });
+
+                  let startY = 45;
+
+                  for (const [collegeName, collegeUsers] of Object.entries(groupedData)) {
+                      // Add college header
+                      pdf.setFont("helvetica", "bold");
+                      pdf.setFontSize(12);
+                      pdf.setTextColor(0, 0, 0);
+                      pdf.text(`College: ${collegeName}`, pdf.internal.pageSize.width / 2, startY, { align: "center" });
+
+                      startY += 10;
+
+                      for (const user of collegeUsers) {
+                          pdf.setFontSize(10);
+
+                          // Ensure black text for user details
+                          pdf.setTextColor(0, 0, 0);
+                          pdf.text(`Name: ${user.first_name} ${user.last_name}`, margin, startY);
+                          pdf.text(`Email: ${user.email_address}`, margin, startY + 5);
+
+                          const rightAlignX = pdf.internal.pageSize.width - margin;
+                          pdf.text(`Status: ${user.status}`, rightAlignX, startY + 5, { align: "right" });
+
+                          startY += 15;
+
+                          const activityRows = [];
+                          const activityImages = [];
+
+                          for (const activity of user.activities) {
+                              const imgSrc = activity.image_url;
+                              const imgData = imgSrc ? await getImageDataUrl(imgSrc, 50, 50) : null;
+                              activityImages.push(imgData);
+
+                              activityRows.push([
+                                  "",
+                                  activity.category,
+                                  activity.type === "Unrecognized" ? "Registered" : activity.type,
+                                  activity.type === "Unrecognized" ? "N/A" : activity.location || "N/A",
+                                  formatImageStatus(activity.isRecognized, activity.isFlagged),
+                                  activity.date,
+                              ]);
+                          }
+
+                          if (activityRows.length > 0) {
+                              // Render activities
+                              pdf.autoTable({
+                                  startY,
+                                  head: [headers],
+                                  body: activityRows,
+                                  didDrawCell: (data) => {
+                                      if (data.row.section === "body" && data.column.index === 0) {
+                                          const imgData = activityImages[data.row.index];
+                                          if (imgData) {
+                                              const imgWidth = 15;
+                                              const imgHeight = 15;
+                                              const xOffset = data.cell.x + (data.cell.width - imgWidth) / 2;
+                                              const yOffset = data.cell.y + (data.cell.height - imgHeight) / 2;
+
+                                              pdf.addImage(imgData, "PNG", xOffset, yOffset, imgWidth, imgHeight);
+                                          }
+                                      }
+                                  },
+                                  headStyles: { fillColor: [129, 169, 105] },
+                                  margin: { left: margin },
+                                  bodyStyles: {
+                                      minCellHeight: 20,
+                                      cellPadding: 2,
+                                      valign: "middle",
+                                  },
+                              });
+                              startY = pdf.autoTable.previous.finalY + 10;
+                          } else {
+                              // Display "No activity available" in regular style
+                              pdf.setFontSize(9);
+                              pdf.setTextColor(0, 0, 0);
+                              pdf.text("No activity available for this user.", margin, startY);
+                              startY += 10;
+                          }
+
+                          // Draw separator line for user section
+                          pdf.setDrawColor(0, 0, 0);
+                          pdf.line(margin, startY, pdf.internal.pageSize.width - margin, startY);
+                          startY += 5;
+
+                          if (startY + 30 > pdf.internal.pageSize.height - margin) {
+                              pdf.addPage();
+                              startY = margin + 20;
+                          }
+                      }
+
+                      startY += 10; // Add extra space between colleges
+                  }
+
+                  addFooter(pdf, margin, dateGenerated);
+
+                  pdf.save(`WasteRedux_Summary_${college}_${new Date().toISOString().slice(0, 10)}.pdf`);
+              } catch (error) {
+                  console.error("Error exporting PDF:", error);
+                  alert("An error occurred while generating the PDF.");
+              } finally {
+                  exportButton.disabled = false;
+                  exportButton.textContent = "Export PDF";
+                  spinner.remove();
+              }
+          }
+
+          function groupUsersByCollege(users) {
+              return users.reduce((acc, user) => {
+                  const college = user.college_department || "Unknown College";
+                  if (!acc[college]) {
+                      acc[college] = [];
+                  }
+                  acc[college].push(user);
+                  return acc;
+              }, {});
+          }
+
+          function formatImageStatus(isRecognized, isFlagged) {
+              if (isRecognized && !isFlagged) return "Recognized";
+              if (!isRecognized && isFlagged) return "Flagged";
+              if (!isRecognized && !isFlagged) return "Pending";
+              return "";
+          }
+
+          function formatDateTime(date) {
+              return date.toLocaleString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+              });
+          }
+
+          function addFooter(pdf, margin, dateGenerated) {
+              const pageCount = pdf.internal.getNumberOfPages();
+              for (let i = 1; i <= pageCount; i++) {
+                  pdf.setPage(i);
+                  pdf.setFont("helvetica", "normal");
+                  pdf.setFontSize(9);
+                  pdf.setTextColor(0, 0, 0); // Set text color to black (RGB: 0, 0, 0)
+                  pdf.text(`Generated by: Admin`, margin, pdf.internal.pageSize.height - 15);
+                  pdf.text(`Date Generated: ${dateGenerated}`, margin, pdf.internal.pageSize.height - 10);
+                  pdf.text(`Page ${i} of ${pageCount}`, pdf.internal.pageSize.width - margin - 20, pdf.internal.pageSize.height - 10);
+              }
+          }
+
+          async function getImageDataUrl(url, maxWidth = 50, maxHeight = 50, quality = 0.7) {
+              try {
+                  const img = new Image();
+                  img.crossOrigin = "Anonymous";
+                  img.src = url;
+                  await img.decode();
+
+                  let width = img.width;
+                  let height = img.height;
+
+                  if (width > maxWidth || height > maxHeight) {
+                      const scale = Math.min(maxWidth / width, maxHeight / height);
+                      width = Math.round(width * scale);
+                      height = Math.round(height * scale);
+                  }
+
+                  const canvas = document.createElement("canvas");
+                  canvas.width = width;
+                  canvas.height = height;
+                  const ctx = canvas.getContext("2d");
+                  ctx.drawImage(img, 0, 0, width, height);
+
+                  return canvas.toDataURL("image/png", quality);
+              } catch (error) {
+                  console.error("Failed to load or optimize image:", error);
+                  return null;
+              }
+          }
+        </script>
+
+        
+  
+        <div class="flex flex-row justify-between gap-5 max-md:flex-col m-5">
+          <div class="flex flex-col p-6 w-full bg-white rounded-2xl shadow-md max-md:w-full">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-xl font-semibold text-black mt-3">Scanned Solid Waste by College</h2>
+              <button onclick="exportToPDFScannedSolidWaste()" class="flex items-center gap-2 px-3 py-2 bg-redux-lightgreen text-base text-white font-semibold rounded-lg shadow-md hover:bg-redux-lightgreen2 focus:outline-none mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                  <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM13 9V16H11V9H6L12 3L18 9H13Z"></path>
+                </svg>
+                Export PDF
+              </button>
+            </div>
+            
+            <p class="text-xs font-bold text-neutral-600 mb-0 text-center">Solid Waste Category</p>
+
+            <div class="flex items-center justify-center gap-3 mt-2 mb-4">
+              <input type="checkbox" id="plasticCheckbox" checked class="category-checkbox w-5 h-5 rounded-sm cursor-pointer plastic-checkbox">
+              <label for="plasticCheckbox" class="text-xs font-medium cursor-pointer text-neutral-700 -ml-2">Plastic</label>
+          
+              <input type="checkbox" id="metalCheckbox" checked class="category-checkbox w-5 h-5 rounded-sm cursor-pointer metal-checkbox">
+              <label for="metalCheckbox" class="text-xs font-medium cursor-pointer text-neutral-700 -ml-2">Metal</label>
+          
+              <input type="checkbox" id="glassCheckbox" checked class="category-checkbox w-5 h-5 rounded-sm cursor-pointer glass-checkbox">
+              <label for="glassCheckbox" class="text-xs font-medium cursor-pointer text-neutral-700 -ml-2">Glass</label>
+            </div>               
+                   
+            <canvas id="myChart"></canvas>
+
+            <div class="flex items-center mt-9 ml-7">
+              <label for="startDate" class="text-sm text-neutral-600 mr-2">Start Date:</label>
+              <input type="date" id="startDate" class="text-sm text-stone-700 border rounded p-1 mr-2">
+
+              <label for="endDate" class="text-sm text-neutral-600 mr-2">End Date:</label>
+              <input type="date" id="endDate" class="text-sm text-stone-700 border rounded p-1 mr-4">
+
+              <button id="filterButton" class="bg-redux-lightgreen text-white text-xs px-4 py-2 rounded-lg hover:bg-redux-lightgreen2 mr-2 shadow-md">Filter</button>
+              <button id="resetButton" class="bg-gray-100 text-stone-600 text-xs px-4 py-2 rounded-lg hover:bg-gray-200 shadow-md">Reset</button>
+            </div>            
+          </div>
+        </div>
+
+        <script>
+          function updateChartWithCheckboxes(data) {
+            const ctx = document.getElementById("myChart").getContext('2d');
+
+            if (window.myBarChart) {
+                window.myBarChart.destroy();
+            }
+
+            const selectedDatasets = [];
+            if (document.getElementById("plasticCheckbox").checked) {
+                selectedDatasets.push({ label: "Plastic", data: data.Plastic, backgroundColor: "#A7CC90", borderColor: "#A7CC90", borderWidth: 1 });
+            }
+            if (document.getElementById("metalCheckbox").checked) {
+                selectedDatasets.push({ label: "Metal", data: data.Metal, backgroundColor: "#BCCCE6", borderColor: "#BCCCE6", borderWidth: 1 });
+            }
+            if (document.getElementById("glassCheckbox").checked) {
+                selectedDatasets.push({ label: "Glass", data: data.Glass, backgroundColor: "#E6A9F4", borderColor: "#E6A9F4", borderWidth: 1 });
+            }
+
+            window.myBarChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: data.colleges,
+                    datasets: selectedDatasets,
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: "Colleges"
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "No. of Scanned Solid Waste"
+                            }
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                            position: 'top'
+                        }
+                    }
+                },
+            });
+          }
+
+          function fetchBarChartData(startDate = "", endDate = "") {
+              fetch(`/get_waste_data_by_college/?startDate=${startDate}&endDate=${endDate}`)
+                  .then(response => response.json())
+                  .then(data => {
+                      updateChartWithCheckboxes(data);
+                  })
+                  .catch(error => console.error("Error fetching data:", error));
+          }
+
+          document.getElementById("plasticCheckbox").addEventListener("change", () => fetchBarChartData());
+          document.getElementById("metalCheckbox").addEventListener("change", () => fetchBarChartData());
+          document.getElementById("glassCheckbox").addEventListener("change", () => fetchBarChartData());
+
+          function loadBarChartFilters() {
+              const startDate = sessionStorage.getItem("barChartStartDate") || "";
+              const endDate = sessionStorage.getItem("barChartEndDate") || "";
+              document.getElementById("startDate").value = startDate;
+              document.getElementById("endDate").value = endDate;
+              fetchBarChartData(startDate, endDate);
+          }
+          
+          document.getElementById("filterButton").addEventListener("click", function() {
+              const startDate = document.getElementById("startDate").value;
+              const endDate = document.getElementById("endDate").value;
+
+              if ((startDate && !endDate) || (!startDate && endDate)) {
+                  openAlertDateRangeModal();
+                  return;
+              }
+
+              sessionStorage.setItem("barChartStartDate", startDate);
+              sessionStorage.setItem("barChartEndDate", endDate);
+              fetchBarChartData(startDate, endDate);
+          });
+
+          
+          document.getElementById("resetButton").addEventListener("click", function() {
+              document.getElementById("startDate").value = "";
+              document.getElementById("endDate").value = "";
+              sessionStorage.removeItem("barChartStartDate");
+              sessionStorage.removeItem("barChartEndDate");
+              fetchBarChartData(); 
+          });
+          
+          document.addEventListener("DOMContentLoaded", function() {
+              loadBarChartFilters();
+          });
+          
+          function formatDate(date) {
+              return new Date(date).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric"
+              });
+          }
+          
+          function formatDateTime(date) {
+              const options = { 
+                  month: "long", 
+                  day: "numeric", 
+                  year: "numeric", 
+                  hour: "numeric", 
+                  minute: "2-digit",
+                  hour12: true
+              };
+              return new Date(date).toLocaleString("en-US", options);
+          }
+          
+          function addFooter(pdf, margin, dateGenerated) {
+              const pageCount = pdf.internal.getNumberOfPages();
+              for (let i = 1; i <= pageCount; i++) {
+                  pdf.setPage(i);
+                  pdf.setFont("helvetica", "normal");
+                  pdf.setFontSize(9);
+
+                  pdf.text(`Generated by: Admin`, margin, pdf.internal.pageSize.height - 15);
+                  pdf.text(`Date Generated: ${dateGenerated}`, margin, pdf.internal.pageSize.height - 10);
+  
+                  pdf.text(`Page ${i} of ${pageCount}`, pdf.internal.pageSize.width - margin - 20, pdf.internal.pageSize.height - 10);
+              }
+          }
+          
+          function exportToPDFScannedSolidWaste() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF("p", "mm", "a4");
+            const margin = 12.7;
+            const contentWidth = 210 - margin * 2;
+
+            const startDateValue = document.getElementById("startDate").value;
+            const endDateValue = document.getElementById("endDate").value;
+
+            if ((startDateValue && !endDateValue) || (!startDateValue && endDateValue)) {
+                openAlertDateRangeModal();
+                return;
+            }
+
+            const startDate = startDateValue ? formatDate(startDateValue) : "All Dates";
+            const endDate = endDateValue ? formatDate(endDateValue) : "All Dates";
+            const dateRangeText = startDate === "All Dates" && endDate === "All Dates" ? "All Dates" : `${startDate} - ${endDate}`;
+            const dateGenerated = formatDateTime(new Date());
+            const logoPath = "{% static 'images/resized_logo.png' %}";
+
+            pdf.addImage(logoPath, 'PNG', margin, margin, 9, 9);
+            pdf.setFontSize(14);
+            pdf.setFont("helvetica", "bold");
+            pdf.setTextColor(65, 100, 74);
+            pdf.text("Waste", margin + 10, margin + 8);
+            pdf.setTextColor(129, 169, 105);
+            pdf.text("Redux", margin + 26, margin + 8);
+
+            pdf.setDrawColor(128, 128, 128);
+            pdf.setLineWidth(0.5);
+            pdf.line(margin, margin + 12, margin + contentWidth, margin + 12);
+
+            pdf.setTextColor(0, 0, 0);
+            pdf.setFontSize(10); 
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Scanned Solid Waste by College", margin + contentWidth / 2, margin + 21, { align: "center" });
+            pdf.setFontSize(8);
+            pdf.setFont("helvetica", "normal");
+            pdf.text(dateRangeText, margin + contentWidth / 2, margin + 25, { align: "center" });
+
+            const selectedCategories = [];
+            if (document.getElementById("plasticCheckbox").checked) {
+                selectedCategories.push({ name: "Plastic", color: "#A7CC90" });
+            }
+            if (document.getElementById("metalCheckbox").checked) {
+                selectedCategories.push({ name: "Metal", color: "#BCCCE6" });
+            }
+            if (document.getElementById("glassCheckbox").checked) {
+                selectedCategories.push({ name: "Glass", color: "#E6A9F4" });
+            }
+
+            const totalCategoriesWidth = selectedCategories.length * 14; 
+            const centerX = (210 - totalCategoriesWidth) / 2; 
+
+            selectedCategories.forEach((category, index) => {
+                const xPos = centerX + index * 14; 
+
+                pdf.setDrawColor(category.color);
+                pdf.setFillColor(category.color);
+                pdf.rect(xPos, margin + 28.5, 4, 4, "F"); 
+
+                pdf.setTextColor(0, 0, 0);
+                pdf.setFontSize(7);
+                pdf.text(category.name, xPos + 5, margin + 31.5); 
+            });
+
+
+            html2canvas(document.querySelector("#myChart")).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png");
+                pdf.addImage(imgData, "PNG", margin, margin + 35, contentWidth, 90);
+
+                const chartInstance = window.myBarChart;
+                const colleges = chartInstance.data.labels;
+                const visibleDatasets = [];
+
+                if (document.getElementById("plasticCheckbox").checked) {
+                    visibleDatasets.push(chartInstance.data.datasets.find(dataset => dataset.label === "Plastic"));
+                }
+                if (document.getElementById("metalCheckbox").checked) {
+                    visibleDatasets.push(chartInstance.data.datasets.find(dataset => dataset.label === "Metal"));
+                }
+                if (document.getElementById("glassCheckbox").checked) {
+                    visibleDatasets.push(chartInstance.data.datasets.find(dataset => dataset.label === "Glass"));
+                }
+
+                const tableHeaders = ["College", ...visibleDatasets.map(dataset => dataset.label)];
+                const tableData = colleges.map((college, index) => {
+                    const row = [college];
+                    visibleDatasets.forEach(dataset => {
+                        row.push(dataset.data[index] || 0);
+                    });
+                    return row;
+                });
+
+                pdf.setFontSize(10);
+                pdf.setFont("helvetica", "bold");
+                pdf.text("Scanned Waste Summary by College", margin + contentWidth / 2, margin + 134, { align: "center" });
+
+                pdf.autoTable({
+                    startY: margin + 137,
+                    head: [tableHeaders],
+                    body: tableData,
+                    theme: "grid",
+                    styles: {
+                        fontSize: 8,
+                        cellPadding: 2,
+                        halign: "center",
+                    },
+                    headStyles: {
+                        fillColor: [129, 169, 105],
+                        textColor: [255, 255, 255],
+                        fontStyle: "bold",
+                    },
+                    margin: { left: margin, right: margin },
+                    tableWidth: "auto",
+                    columnStyles: {
+                        0: { cellWidth: 'wrap' },
+                        ...Object.fromEntries(visibleDatasets.map((_, i) => [i + 1, { cellWidth: (contentWidth - margin * 2) / visibleDatasets.length }]))
+                    }
+                });
+
+                addFooter(pdf, margin, dateGenerated);
+
+                pdf.save(`WasteRedux_Scanned_Solid_Waste_Report_${startDate}_to_${endDate}.pdf`);
+            });
+        }
+        </script>
+          
+        <section class="p-6 bg-white rounded-lg shadow-md mx-5 mb-5 mt-11">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-medium text-black">Overall User Activity Over Time</h3>
+            <button onclick="exportToPDFChartMonth()" class="flex items-center gap-2 px-3 py-2 bg-redux-lightgreen text-base text-white font-semibold rounded-lg shadow-md hover:bg-redux-lightgreen2 focus:outline-none mt-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path d="M4 19H20V12H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V12H4V19ZM13 9V16H11V9H6L12 3L18 9H13Z"></path>
+              </svg>
+              Export PDF
+            </button>
+          </div>
+
+          <p class="text-xs font-bold text-neutral-600 mb-0 text-center">Colleges</p>
+
+          <div class="flex flex-wrap justify-center gap-2 mt-3 mb-4">
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CAFA" class="college-checkbox cafa-checkbox w-4 h-4" unchecked data-color="#800000">
+              <label for="CAFA" class="text-xs ml-1">CAFA</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CAL" class="college-checkbox cal-checkbox w-4 h-4" unchecked data-color="#84ed84">
+              <label for="CAL" class="text-xs ml-1">CAL</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CBEA" class="college-checkbox cbea-checkbox w-4 h-4" checked data-color="#ffd700">
+              <label for="CBEA" class="text-xs ml-1">CBEA</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CCJE" class="college-checkbox ccje-checkbox w-4 h-4" unchecked data-color="#000000">
+              <label for="CCJE" class="text-xs ml-1">CCJE</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CHTM" class="college-checkbox chtm-checkbox w-4 h-4" unchecked data-color="#f9fb7c">
+              <label for="CHTM" class="text-xs ml-1">CHTM</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CICT" class="college-checkbox cict-checkbox w-4 h-4" checked data-color="#808080">
+              <label for="CICT" class="text-xs ml-1">CICT</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CIT" class="college-checkbox cit-checkbox w-4 h-4" unchecked data-color="#000080">
+              <label for="CIT" class="text-xs ml-1">CIT</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CLaw" class="college-checkbox claw-checkbox w-4 h-4" unchecked data-color="#572f5d">
+              <label for="CLaw" class="text-xs ml-1">CLaw</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CON" class="college-checkbox con-checkbox w-4 h-4" checked data-color="#00FFFF">
+              <label for="CON" class="text-xs ml-1">CON</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="COE" class="college-checkbox coe-checkbox w-4 h-4" unchecked data-color="#FF0000">
+              <label for="COE" class="text-xs ml-1">COE</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="COED" class="college-checkbox coed-checkbox w-4 h-4" unchecked data-color="#0000FF">
+              <label for="COED" class="text-xs ml-1">COED</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CS" class="college-checkbox cs-checkbox w-4 h-4" unchecked data-color="#006400">
+              <label for="CS" class="text-xs ml-1">CS</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CSER" class="college-checkbox cser-checkbox w-4 h-4" unchecked data-color="#ff5b00">
+              <label for="CSER" class="text-xs ml-1">CSER</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="CSSP" class="college-checkbox cssp-checkbox w-4 h-4" unchecked data-color="#A020F0">
+              <label for="CSSP" class="text-xs ml-1">CSSP</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="GS" class="college-checkbox gs-checkbox w-4 h-4" unchecked data-color="#FFA500">
+              <label for="GS" class="text-xs ml-1">GS</label>
+            </div>
+            <div class="college-filter flex items-center">
+              <input type="checkbox" id="NSTP" class="college-checkbox nstp-checkbox w-4 h-4" unchecked data-color="#964B00">
+              <label for="NSTP" class="text-xs ml-1">NSTP</label>
+            </div>
+          </div>
+
+          <canvas id="activityChart"></canvas>
+          
+          <div class="flex items-center mt-6 ml-6 text-stone-600">
+            <label for="activityStartDate" class="mr-2 text-sm">Start Date :</label>
+            <input type="date" id="activityStartDate" class="text-sm text-stone-700 border rounded p-1 mr-2">
+            <label for="activityEndDate" class="mr-2 text-sm">End Date :</label>
+            <input type="date" id="activityEndDate" class="text-sm text-stone-700 border rounded p-1 mr-4">
+            <button id="activityFilterButton" class="bg-redux-lightgreen text-white text-xs px-4 py-2 rounded-lg hover:bg-redux-lightgreen2 mr-2 shadow-md">Filter</button>
+            <button id="activityResetButton" class="bg-gray-100 text-stone-600 text-xs px-4 py-2 rounded-lg hover:bg-gray-200 shadow-md">Reset</button>
+          </div>          
+          
+          <script>
+            document.getElementById("activityFilterButton").addEventListener("click", function () {
+              const startDateElement = document.getElementById("activityStartDate");
+              const endDateElement = document.getElementById("activityEndDate");
+
+              const startDate = startDateElement ? startDateElement.value : null;
+              const endDate = endDateElement ? endDateElement.value : null;
+
+              if (!startDate || !endDate) {
+                  openAlertDateRangeModal();
+                  return;
+              }
+
+              sessionStorage.setItem("activityStartDate", startDate);
+              sessionStorage.setItem("activityEndDate", endDate);
+
+              fetchUserActivityData(startDate, endDate);
+            });
+          
+            document.getElementById("activityResetButton").addEventListener("click", function() {
+              document.getElementById("activityStartDate").value = "";
+              document.getElementById("activityEndDate").value = "";
+              sessionStorage.removeItem("activityStartDate");
+              sessionStorage.removeItem("activityEndDate");
+              fetchUserActivityData(); 
+            });
+          </script>          
+        </section>
+      
+        <script>
+          function generateColor(index, total) {
+            const hue = (index * 360 / total) % 360; 
+            return `hsl(${hue}, 70%, 60%)`; 
+          }
+
+          document.querySelectorAll('.college-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', updateFilteredChart);
+          });
+
+          document.addEventListener("DOMContentLoaded", () => {
+            updateFilteredChart();
+          });
+
+          document.addEventListener("DOMContentLoaded", () => {
+            fetchTableData();
+
+            document.getElementById("activityFilterButton").addEventListener("click", fetchTableData);
+            document.getElementById("activityResetButton").addEventListener("click", () => {
+                document.getElementById("activityStartDate").value = "";
+                document.getElementById("activityEndDate").value = "";
+                fetchTableData();
+            });
+          });
+
+
+          document.getElementById("activityFilterButton").addEventListener("click", function() {
+            const startDate = document.getElementById("activityStartDate").value;
+            const endDate = document.getElementById("activityEndDate").value;
+
+            if ((startDate && !endDate) || (!startDate && endDate)) {
+              openAlertDateRangeModal();
+              return;
+            }
+
+            sessionStorage.setItem("activityStartDate", startDate);
+            sessionStorage.setItem("activityEndDate", endDate);
+
+            updateFilteredChart(); 
+          });
+
+          function updateFilteredChart() {
+            const selectedColleges = Array.from(document.querySelectorAll('.college-checkbox'))
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => ({
+                    id: checkbox.id,
+                    color: checkbox.dataset.color,
+                }));
+
+            const startDate = sessionStorage.getItem("activityStartDate") || document.getElementById("activityStartDate").value;
+            const endDate = sessionStorage.getItem("activityEndDate") || document.getElementById("activityEndDate").value;
+
+            if (selectedColleges.length === 0) {
+                const ctx = document.getElementById("activityChart")?.getContext("2d");
+                if (ctx && window.userActivityChart) {
+                    window.userActivityChart.data.datasets = []; 
+                    window.userActivityChart.update(); 
+
+                    ctx.font = "16px Arial";
+                    ctx.fillStyle = "rgba(128, 128, 128, 0.8)";
+                    ctx.textAlign = "center";
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); 
+                    ctx.fillText("No data to display", ctx.canvas.width / 2, ctx.canvas.height / 2);
+                }
+                return; 
+            }
+
+            fetchUserActivityData(selectedColleges, startDate, endDate);
+          }
+
+
+
+          document.addEventListener("DOMContentLoaded", () => {
+              const defaultColleges = [{ id: "All Colleges", color: "#000" }];
+              fetchUserActivityData(defaultColleges);
+          });
+
+          function fetchUserActivityData(selectedColleges = [], startDate = "", endDate = "") {
+            selectedColleges = Array.isArray(selectedColleges) ? selectedColleges : [];
+
+            if (selectedColleges.length === 0) {
+                const ctx = document.getElementById("activityChart")?.getContext("2d");
+                if (ctx && window.userActivityChart) {
+                    window.userActivityChart.data.datasets = [];
+                    window.userActivityChart.update(); 
+                }
+                return; 
+            }
+
+            const collegeIds = selectedColleges.map(college => college.id).join(",");
+
+            fetch(`/get_user_activity_data/?colleges=${collegeIds}&startDate=${startDate}&endDate=${endDate}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Server responded with status ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const allMonths = [
+                        "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
+
+                    const startMonthIndex = startDate ? new Date(startDate).getMonth() : 0;
+                    const endMonthIndex = endDate ? new Date(endDate).getMonth() : 11;
+                    const filteredMonths = allMonths.slice(startMonthIndex, endMonthIndex + 1);
+
+                    const datasets = selectedColleges.map(college => ({
+                        label: college.id,
+                        data: data?.activity_data?.[college.id]?.slice(startMonthIndex, endMonthIndex + 1) || Array(filteredMonths.length).fill(0),
+                        borderColor: college.color || "#000",
+                        backgroundColor: college.color || "#000",
+                        fill: false,
+                        tension: 0.1
+                    }));
+
+                    const ctx = document.getElementById("activityChart")?.getContext("2d");
+                    if (ctx) {
+                        if (window.userActivityChart) {
+                            window.userActivityChart.destroy();
+                        }
+
+                        window.userActivityChart = new Chart(ctx, {
+                            type: "line",
+                            data: {
+                                labels: filteredMonths,
+                                datasets: datasets,
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend:false,
+                                },
+                                scales: {
+                                    x: { title: { display: true, text: "Month" } },
+                                    y: { title: { display: true, text: "Activity Count" }, beginAtZero: true },
+                                },
+                            },
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching activity data:", error);
+                    alert("Failed to load activity data. Please try again later.");
+                });
+          }
+
+
+          document.addEventListener("DOMContentLoaded", () => {
+            loadActivityChartFilters();
+            updateFilteredChart();
+          });
+
+          function loadActivityChartFilters() {
+            const startDate = sessionStorage.getItem("activityStartDate") || "";
+            const endDate = sessionStorage.getItem("activityEndDate") || "";
+            document.getElementById("activityStartDate").value = startDate;
+            document.getElementById("activityEndDate").value = endDate;
+          }
+
+          document.addEventListener("DOMContentLoaded", fetchUserActivityData);
+
+          document.getElementById("activityFilterButton").addEventListener("click", function() {
+            const startDate = document.getElementById("activityStartDate").value;
+            const endDate = document.getElementById("activityEndDate").value;
+
+            if ((startDate && !endDate) || (!startDate && endDate)) {
+                openAlertDateRangeModal();
+            } else {
+                sessionStorage.setItem("activityStartDate", startDate);
+                sessionStorage.setItem("activityEndDate", endDate);
+                fetchUserActivityData(startDate, endDate);
+            }
+          });
+
+          document.getElementById("activityResetButton").addEventListener("click", function() {
+            document.getElementById("activityStartDate").value = "";
+            document.getElementById("activityEndDate").value = "";
+            sessionStorage.removeItem("activityStartDate");
+            sessionStorage.removeItem("activityEndDate");
+
+            updateFilteredChart();
+          });
+
+          function loadActivityChartFilters() {
+            const startDate = sessionStorage.getItem("activityStartDate") || "";
+            const endDate = sessionStorage.getItem("activityEndDate") || "";
+            document.getElementById("activityStartDate").value = startDate;
+            document.getElementById("activityEndDate").value = endDate;
+            fetchUserActivityData(startDate, endDate);
+          }
+
+          document.addEventListener("DOMContentLoaded", loadActivityChartFilters);
+
+          function exportToPDFChartMonth() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF("p", "mm", "a4");
+            const margin = 12.7;
+            const contentWidth = 210 - margin * 2;
+
+            const startDateValue = document.getElementById("activityStartDate").value;
+            const endDateValue = document.getElementById("activityEndDate").value;
+            const dateGenerated = formatDateTime(new Date());
+
+            if (!startDateValue && endDateValue) {
+                openAlertDateRangeModal();
+                return;
+            }
+
+            if (startDateValue && !endDateValue) {
+                openAlertDateRangeModal();
+                return;
+            }
+
+            const startDate = startDateValue ? formatDate(startDateValue) : "All Dates";
+            const endDate = endDateValue ? formatDate(endDateValue) : "All Dates";
+            const dateRangeText = startDate === "All Dates" && endDate === "All Dates" ? "All Dates" : `${startDate} - ${endDate}`;
+            const logoPath = "{% static 'images/resized_logo.png' %}";
+
+            pdf.addImage(logoPath, 'PNG', margin, margin, 9, 9);
+            pdf.setFontSize(14);
+            pdf.setFont("helvetica", "bold");
+            pdf.setTextColor(65, 100, 74);
+            pdf.text("Waste", margin + 10, margin + 8);
+            pdf.setTextColor(129, 169, 105);
+            pdf.text("Redux", margin + 26, margin + 8);
+
+            pdf.setDrawColor(128, 128, 128);
+            pdf.setLineWidth(0.5);
+            pdf.line(margin, margin + 12, margin + contentWidth, margin + 12);
+
+            pdf.setTextColor(0, 0, 0);
+            pdf.setFontSize(10);
+            pdf.setFont("helvetica", "bold");
+            pdf.text("Overall User Activity Report", margin + contentWidth / 2, margin + 21, { align: "center" });
+            pdf.setFontSize(8);
+            pdf.setFont("helvetica", "normal");
+            pdf.text(dateRangeText, margin + contentWidth / 2, margin + 25, { align: "center" });
+
+            const selectedColleges = Array.from(document.querySelectorAll('.college-checkbox'))
+              .filter(checkbox => checkbox.checked)
+              .map(checkbox => ({
+                id: checkbox.id,
+                color: checkbox.dataset.color,
+              }
+            ));
+
+            const itemWidth = 11; 
+            const totalLegendWidth = selectedColleges.length * itemWidth;
+
+            const legendStartX = (210 - totalLegendWidth) / 2;
+
+            selectedColleges.forEach((college, index) => {
+                const xPos = legendStartX + index * itemWidth;
+
+                pdf.setDrawColor(college.color);
+                pdf.setFillColor(college.color);
+                pdf.rect(xPos, margin + 28.5, 3, 3, "F");
+
+                pdf.setTextColor(0, 0, 0);
+                pdf.setFontSize(6);
+                pdf.text(college.id, xPos + 4, margin + 31);
+            });
+
+            html2canvas(document.querySelector("#activityChart")).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png");
+                pdf.addImage(imgData, "PNG", margin, margin + 35, contentWidth, 90);
+
+                fetch(`/get_user_activity_data/?colleges=${selectedColleges.map(c => c.id).join(',')}&startDate=${startDateValue}&endDate=${endDateValue}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                        const startMonthIndex = startDateValue ? new Date(startDateValue).getMonth() : 0;
+                        const endMonthIndex = endDateValue ? new Date(endDateValue).getMonth() : 11;
+                        const filteredMonths = allMonths.slice(startMonthIndex, endMonthIndex + 1);
+
+                        const tableHeaders = ["College", ...filteredMonths];
+                        const tableData = selectedColleges.map(college => {
+                          const row = [college.id];
+                          filteredMonths.forEach((_, monthIndex) => {
+                            row.push(data.activity_data[college.id][startMonthIndex + monthIndex] || 0);
+                          });
+                          return row;
+                        });
+
+                        pdf.setFontSize(10);
+                        pdf.setFont("helvetica", "bold");
+                        pdf.text("Monthly Activity Summary by College", margin + contentWidth / 2, margin + 134, { align: "center" });
+
+                        pdf.autoTable({
+                            startY: margin + 137,
+                            head: [tableHeaders],
+                            body: tableData,
+                            theme: "grid",
+                            styles: {
+                                fontSize: 8,
+                                cellPadding: 2,
+                                halign: "center",
+                            },
+                            headStyles: {
+                                fillColor: [129, 169, 105],
+                                textColor: [255, 255, 255],
+                                fontStyle: "bold",
+                            },
+                            margin: { left: margin, right: margin },
+                            tableWidth: "auto",
+                            columnStyles: {
+                                0: { cellWidth: 'wrap' },
+                                ...Object.fromEntries(filteredMonths.map((_, index) => [index + 1, { cellWidth: (contentWidth - margin * 2) / filteredMonths.length }]))
+                            }
+                        });
+
+                        addFooter(pdf, margin, dateGenerated);
+
+                        pdf.save(`WasteRedux_Overall_User_Activity_Report_${dateRangeText}.pdf`);
+                    });
+            });
+        }
+        </script>
+      </main>
+    </div>
+  </body>
+</html>
