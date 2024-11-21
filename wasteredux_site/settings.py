@@ -128,11 +128,11 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'connect_timeout': 10,
-            'read_timeout': 20,
-            'write_timeout': 20,
+            'connect_timeout': 60000,
+            'read_timeout': 20000,
+            'write_timeout': 20000,
         },
-        'CONN_MAX_AGE': 60,  
+        'CONN_MAX_AGE': 60000,  
         'POOL_OPTIONS': {
             'MAX_CONNS': 10, 
             'MAX_OVERFLOW': 5, 
