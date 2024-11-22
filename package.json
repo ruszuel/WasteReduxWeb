@@ -6,9 +6,9 @@
     "start": "npm run dev",
     "build": "npm run build:clean && npm run build:tailwind",
     "build:clean": "rimraf ../static/css/dist", 
-    "build:tailwind": "cross-env NODE_ENV=production node --max-old-space-size=4096 ./node_modules/tailwindcss/lib/cli.js -i theme/static_src/src/styles.css -o ../static/css/dist/styles.css --minify",
+    "build:tailwind": "cross-env NODE_ENV=production node --max-old-space-size=4096 ./node_modules/tailwindcss/lib/cli.js -i theme/static_src/src/styles.css -o theme/static_src/dist/output.css --minify",
     "dev": "npm run tailwind:dev", 
-    "tailwind:dev": "cross-env NODE_ENV=development node --max-old-space-size=4096 ./node_modules/tailwindcss/lib/cli.js -i theme/static_src/src/styles.css -o ../static/css/dist/styles.css -w", 
+    "tailwind:dev": "cross-env NODE_ENV=development node --max-old-space-size=4096 ./node_modules/tailwindcss/lib/cli.js -i theme/static_src/src/styles.css -o theme/static_src/dist/output.css -w", 
     "tailwind:build": "npm run build:tailwind" 
   },
 
