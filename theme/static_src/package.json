@@ -8,7 +8,7 @@
     "build:clean": "rimraf ../static/css/dist", 
     "build:tailwind": "cross-env NODE_ENV=production node --max-old-space-size=4096 ../../node_modules/tailwindcss/lib/cli.js -i ./src/styles.css -o ../static/css/dist/styles.css --minify",
     "dev": "npm run tailwind:dev", 
-    "tailwind:dev": "cross-env NODE_ENV=development node --max-old-space-size=4096 ../../node_modules/tailwindcss/lib/cli.js -i ./src/styles.css -o ../static/css/dist/styles.css -w", 
+    "tailwind:dev": "cross-env NODE_ENV=development node --max-old-space-size=4096 ../../node_modules/tailwindcss/lib/cli.js -i ./src/styles.css -o ../static/css/dist/styles.css -w  --ignore=.heroku/vendor", 
     "tailwind:build": "npm run build:tailwind" 
   },
   "keywords": [],
