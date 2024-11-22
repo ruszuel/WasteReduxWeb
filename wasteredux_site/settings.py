@@ -18,7 +18,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*'
-]  # Update with actual hostnames
+    
+    ]  # Update with actual hostnames
 
 
 
@@ -126,11 +127,11 @@ DATABASES = {
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'connect_timeout': 60000,
-            'read_timeout': 20000,
-            'write_timeout': 20000,
+            'connect_timeout': 10,
+            'read_timeout': 20,
+            'write_timeout': 20,
         },
-        'CONN_MAX_AGE': 60000,  
+        'CONN_MAX_AGE': 60,  
         'POOL_OPTIONS': {
             'MAX_CONNS': 10, 
             'MAX_OVERFLOW': 5, 
